@@ -1,1 +1,44 @@
 
+/* Contenedor principal del código */
+
+        .code-block-container { width: 100%; max-width: 650px; border: 1px solid #30363d; border-radius: 6px; overflow: hidden; background-color: #f0f4f9;
+
+        }
+
+
+
+        /* Barra superior (Cabecera) */
+
+        .code-header {
+
+            display: flex;  justify-content: space-between; align-items: center;  padding: 8px 16px; background-color: ##f0f4f9; border-bottom: 1px solid #30363d; font-size: 14px; color: #444746; font-weight:500;
+
+        }
+
+
+
+        /* El botón de copiar */
+
+        .copy-button {
+
+            background: none;  border: none; color: #444746; cursor: pointer;  font-size: 14px;  display: flex; align-items: center;
+
+            gap: 5px;  transition: color 0.2s;
+
+        }
+
+
+
+        .copy-button:hover {
+
+            color: #58a6ff;
+
+        }
+
+      /* Área del texto/código */
+
+        .code-content { margin: 0; padding: 18px; overflow-x: auto;   font-family: 'ui-monospace', 'SFMono-Regular', 'SF Mono', Menlo, Consolas, monospace;
+
+            font-size: 14px;  line-height: 1.45;   color: #444746;font-weight: 500;   white-space: pre;
+
+        }
