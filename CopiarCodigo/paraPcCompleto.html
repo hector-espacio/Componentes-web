@@ -1,0 +1,122 @@
+
+<style>
+  
+  /* Contenedor principal del código */
+.code-block-container { 
+    width: 100%; 
+    max-width: 650px; 
+    border: 1px solid #30363d; 
+    border-radius: 6px; 
+    overflow: hidden; 
+    background-color: #f0f4f9;
+    /* --- AQUÍ ESTÁ LA SOLUCIÓN --- */
+    margin: 20px 0; /* Separa los bloques arriba y abajo, pero limpia los lados */
+    padding: 0;      /* Elimina el padding interno que traen algunos navegadores */
+    box-sizing: border-box; /* Asegura que el borde no ensanche la caja */
+}
+
+/* Barra superior (Cabecera) - Figcaption */
+.code-header {
+    display: flex;  
+    justify-content: space-between; 
+    align-items: center;  
+    padding: 8px 16px; 
+    background-color: #f0f4f9; /* Corregido el ## que tenías */
+    border-bottom: 1px solid #30363d; 
+    font-size: 14px; 
+    color: #444746; 
+    font-weight: 500;
+    margin: 0; /* Asegura que no tenga márgenes propios */
+}
+
+
+/* El botón de copiar */
+.copy-button {
+    background: none;  
+    border: none; 
+    color: #444746; 
+    cursor: pointer;  
+    font-size: 14px;  
+    display: flex; 
+    align-items: center;
+    gap: 5px;  
+    transition: color 0.2s;
+}
+
+.copy-button:hover {
+    color: #58a6ff;
+}
+
+/* Área del texto/código - Pre */
+.code-content { 
+    margin: 0 !important; /* El !important fuerza a quitar el margen de 'pre' */
+    padding: 18px; 
+    overflow-x: auto;   
+    font-family: 'ui-monospace', 'SFMono-Regular', 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 14px;  
+    line-height: 1.45;   
+    color: #444746;
+    font-weight: 500;   
+    white-space: pre;
+    box-sizing: border-box;
+}
+
+</style>
+
+<figure class="code-block-container">
+
+        <figcaption class="code-header">
+          <span>html/css/js</span>
+          <button class="copy-button" onclick="copyCode(this)">Copiar codigo</button>
+        </figcaption>
+
+<pre class="code-content" id="code-text">
+hola mundo aqui 1
+</pre>
+
+    </figure>
+
+<figure class="code-block-container">
+
+        <figcaption class="code-header">
+          <span>html/css/js</span>
+          <button class="copy-button" onclick="copyCode(this)">Copiar codigo</button>
+        </figcaption>
+
+<pre class="code-content" id="code-text">
+hola mundo aqui 2
+</pre>
+
+    </figure>
+
+
+<script>
+function copyCode(buttonElement) {
+    // 1. Buscamos el contenedor 'figure' más cercano al botón que pulsaste
+    const container = buttonElement.closest('.code-block-container');
+    
+    // 2. Dentro de ESE contenedor, buscamos el bloque de texto
+    const codeBlock = container.querySelector('.code-content');
+    
+    // 3. Obtenemos el texto (limpiando espacios extra al inicio y final)
+    const textToCopy = codeBlock.innerText.trim();
+
+    // 4. Proceso de copiado al portapapeles
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        // Guardamos el texto original para restaurarlo luego
+        const originalText = buttonElement.innerText;
+        
+        // Feedback visual inmediato
+        buttonElement.innerText = "Copiado!";
+        buttonElement.style.color = "#3fb950"; // Verde éxito
+
+        // Volver al estado normal después de 2 segundos
+        setTimeout(() => {
+            buttonElement.innerText = originalText;
+            buttonElement.style.color = ""; // Vuelve al color original del CSS
+        }, 2000);
+    }).catch(err => {
+        console.error('Error al copiar el código:', err);
+    });
+}
+</script>
