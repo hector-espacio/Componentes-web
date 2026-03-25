@@ -84,3 +84,12 @@ Cuando ejecutas el código en tu servidor de Android (HTTP), el script realiza l
     * `textArea.select()`: Selecciona todo el texto dentro del cuadro. Android requiere que el texto esté "marcado" para permitir el copiado en contextos no seguros.
 * **Ejecución de Comando:** Llama a `document.execCommand('copy')`. Este es un comando de legado que los navegadores móviles aún permiten bajo HTTP porque interpretan que hay una selección de texto activa.
 * **Recolección de Basura:** Se usa `document.body.removeChild(textArea)` para eliminar el elemento temporal de la memoria del celular inmediatamente después de copiar.
+
+### 4. Conclusión sobre el Servidor de Android
+
+Es fundamental entender que el comportamiento varía según cómo se abra el archivo en el dispositivo:
+
+1.  **Sin el Servidor (Protocolo `file://`):** Si abres el archivo HTML directamente desde el gestor de archivos, el navegador aplica las restricciones más severas. No solo bloquea el copiado moderno, sino que suele romper las rutas de imágenes y archivos CSS externos.
+2.  **Con el Servidor (Protocolo `http://`):** El servidor es indispensable para que el proyecto cargue correctamente (estilos, fuentes y scripts). Sin embargo, al no tener un certificado SSL (HTTPS), el navegador deshabilita `navigator.clipboard`.
+
+**Resultado Final:** La modificación del código JavaScript con el método del "textarea invisible" es la **única forma** de garantizar que el botón de copiado funcione en un entorno de desarrollo local en Android.
