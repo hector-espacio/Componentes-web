@@ -1,11 +1,12 @@
-// Este componente recibe las 'props' (las propiedades del objeto)
-function Asistente({ nombre, tarea, emoji }) {
+// El parámetro 'datos' es el objeto que vendrá del vector
+function Asistente(datos) {
   return (
-    <div style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
-      <h3>{nombre} {emoji}</h3>
-      <p>Rol: {tarea}</p>
+    <div style={{ border: '1px solid black', margin: '10px', padding: '10px' }}>
+      <h2>{datos.nombre} {datos.emoji}</h2>
+      <p>Tarea: {datos.tarea}</p>
     </div>
   );
 }
 
 export default Asistente;
+
