@@ -51,11 +51,15 @@ Cuando usas <script type="text/babel"> directamente en un archivo HTML, estás h
  * Problema: Es muy lento para aplicaciones reales porque el usuario tiene que esperar a que el navegador "traduzca" todo el código cada vez que carga la página.
 2. En entorno de consola (Herramientas de Build)
 En un proyecto profesional (el que estás haciendo ahora), la transpilación ocurre en tu computadora (servidor de desarrollo), no en el navegador del usuario.
+
+
 | Concepto | Desarrollo en Consola (Vite / Webpack) |
 |---|---|
 | ¿Quién lo hace? | Un "Bundler" (como Vite, esbuild o Webpack) que tiene a Babel integrado. |
 | ¿Cuándo ocurre? | En el momento en que guardas el archivo o cuando ejecutas npm run build. |
 | Resultado | Al navegador le llega un archivo .js puro y optimizado. El navegador ni siquiera sabe que escribiste JSX. |
+
+
 ¿Por qué no lo especificas en el código?
 No lo especificas porque el entorno ya está configurado mediante archivos ocultos o preconfigurados (como package.json, vite.config.js o .babelrc).
 Cuando instalas React con herramientas modernas, se crea una "tubería" invisible:
