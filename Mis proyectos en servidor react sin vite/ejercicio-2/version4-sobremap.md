@@ -30,6 +30,8 @@ Tu fragmento de código se convierte en esto para la computadora:
 })}
 
 Conclusión: El map sigue siendo 100% JavaScript. Lo que devuelve es un objeto de JavaScript (un "elemento de React") que describe cómo debe verse el DOM.
+
+
 3. ¿Cómo entiende React una "Lista de Objetos"?
 Esta es la clave de la metodología. React está diseñado para que, si dentro de las llaves { } encuentra un Array de objetos de React, los pinte uno tras otro automáticamente.
 Resumen para tu documentación:
