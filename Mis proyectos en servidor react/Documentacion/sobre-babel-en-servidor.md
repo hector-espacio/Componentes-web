@@ -106,6 +106,8 @@ Aquí te explico cómo se divide el trabajo según tu package.json:
  * @vitejs/plugin-react: Es el traductor. Dentro de este plugin, Vite utiliza una herramienta llamada esbuild (o a veces Babel internamente) para convertir tu código.
  * scripts: Cuando tú escribes en la consola npm run dev, se ejecuta el comando "vite". Ese comando activa toda la maquinaria de transformación de forma automática.
 Diferencias de flujo
+
+
 | Característica | Con Script en HTML (Babel) | Con tu package.json (Vite) |
 |---|---|---|
 | Transformación | Ocurre en el navegador del cliente. | Ocurre en tu computadora (node.js). |
