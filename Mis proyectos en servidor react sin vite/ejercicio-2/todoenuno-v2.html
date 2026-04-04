@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Asistentes - React Local</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+esto me canza mucho
+    <div id="root"></div>
+
+    <script type="text/babel">
+// Declaración usando un objeto único como argumento
+function Asistente(objeto) {
+  return (
+    <div style={{ border: '1px solid black', margin: '10px', padding: '10px' }}>
+      <h2>{objeto.nombre} {objeto.emoji}</h2>
+      <p>Tarea: {objeto.tarea}</p>
+    </div>
+  );
+}
+</script>
+
+    <script type="text/babel">
+function App() {
+  const asistentes = [
+    { nombre: "Juan Pérez", tarea: "Frontend Developer", emoji: "👨‍💻" },
+    { nombre: "Ana Gómez", tarea: "Diseñadora UX/UI", emoji: "🎨" },
+    { nombre: "Carlos Ruiz", tarea: "Backend Developer", emoji: "🖥️" }
+  ];
+
+  return (
+    <div>
+      <h1>Lista de Asistentes</h1>
+      {/* Uso de notación de props en la invocación */}
+      <Asistente 
+        nombre={asistentes[0].nombre} 
+        emoji={asistentes[0].emoji} 
+        tarea={asistentes[0].tarea} 
+      />
+      <Asistente 
+        nombre={asistentes[1].nombre} 
+        emoji={asistentes[1].emoji} 
+        tarea={asistentes[1].tarea} 
+      />
+      <Asistente 
+        nombre={asistentes[2].nombre} 
+        emoji={asistentes[2].emoji} 
+        tarea={asistentes[2].tarea} 
+      />
+    </div>
+  );
+}
+</script>
+
+    <script type="text/babel">
+const rootElement = document.getElementById('root');
+const root = ReactDOM.createRoot(rootElement);
+root.render(<App />);
+</script>
+
+</body>
+</html>
