@@ -1,17 +1,16 @@
-import Asistente from './src/Asistente.jsx';
+function App() {
+  const asistentes = [
+    { nombre: "Juan Pérez", tarea: "Frontend Developer", emoji: "👨‍💻" },
+    { nombre: "Ana Gómez", tarea: "Diseñadora UX/UI", emoji: "🎨" },
+    { nombre: "Carlos Ruiz", tarea: "Backend Developer", emoji: "🖥️" }
+  ];
 
-export default function App() {
-    const asistentes = [
-        { id: 1, nombre: "Juan Pérez", tarea: "Frontend" },
-        { id: 2, nombre: "Ana Gómez", tarea: "Diseño" }
-    ];
-
-    return (
-        <div>
-            <h1>Lista de Asistentes</h1>
-            {asistentes.map(a => (
-                <Asistente key={a.id} nombre={a.nombre} tarea={a.tarea} />
-            ))}
-        </div>
-    );
+  return (
+    <div>
+      <h1>Lista de Asistentes</h1>
+      { Asistente(asistentes[0]) }
+      { Asistente(asistentes[1]) }
+      { Asistente(asistentes[2]) }
+    </div>
+  );
 }
