@@ -16,6 +16,8 @@ Esta es la parte más técnica. React utiliza un "DOM Virtual" para ser rápido.
  * Con la key: React le pone una "etiqueta de identificación" a cada componente. Así, si algo cambia, solo afecta a ese elemento específico, mejorando el rendimiento.
 3. Ventajas para la Documentación
 Al documentar esta metodología, puedes resaltar estos tres pilares:
+
+
 | Pilar | Beneficio |
 |---|---|
 | Escalabilidad | El código es el mismo para 3 asistentes que para 3,000. |
