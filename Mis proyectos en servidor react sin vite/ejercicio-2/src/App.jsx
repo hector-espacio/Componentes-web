@@ -1,4 +1,4 @@
-import Asistente from './Asistente.jsx';
+import Asistente from './src/Asistente.jsx';
 
 export default function App() {
     const asistentes = [
