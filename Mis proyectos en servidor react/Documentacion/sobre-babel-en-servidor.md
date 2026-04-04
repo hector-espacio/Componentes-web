@@ -16,7 +16,9 @@ Aquí te explico qué está pasando realmente con ese código:
 1. El misterio del componente App
 En tu código hay un pequeño error de referencia que Babel no arreglará por ti:
 Importas el componente como Bienvenida, pero luego intentas renderizar <App />. Para que funcione, deberías usar el mismo nombre:
-import App from './App'; // O cambiar <App /> por <Bienvenida />
+
+```import App from './App'; // O cambiar <App /> por <Bienvenida />
+```
 
 2. ¿Por qué no "ves" Babel?
 No es que Babel esté "instalado en la consola" como un comando manual que debas ejecutar cada vez. Lo que sucede es que probablemente estés usando una herramienta de construcción (como Vite o Create React App).
