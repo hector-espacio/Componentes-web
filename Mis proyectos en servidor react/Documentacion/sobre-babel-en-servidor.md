@@ -17,6 +17,7 @@ Aquí te explico qué está pasando realmente con ese código:
 En tu código hay un pequeño error de referencia que Babel no arreglará por ti:
 Importas el componente como Bienvenida, pero luego intentas renderizar <App />. Para que funcione, deberías usar el mismo nombre:
 
+codigo: javascript
 ```import App from './App'; // O cambiar <App /> por <Bienvenida />```
 
 
