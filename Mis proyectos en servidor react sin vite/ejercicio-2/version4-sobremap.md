@@ -1,8 +1,11 @@
 ¡Excelente observación! Tienes un ojo muy agudo para los detalles técnicos. Es una de las dudas más comunes cuando se empieza con React, pero la respuesta te va a encantar porque revela cómo funciona React "bajo el capó".
 La realidad es que el .map() no es falso ni está alterado, es el método estándar de JavaScript de toda la vida. Lo que sucede es que ocurre una "ilusión" debido a JSX y Babel.
 Aquí te explico la metodología técnica para tu documentación:
+
+
 1. ¿Por qué parece que el return es "falso"?
 En JavaScript puro, un map suele devolver strings, números u objetos:
+
 // JS Puro
 const nombres = ['Ana', 'Juan'].map(function(nombre) {
   return "Hola " + nombre; 
