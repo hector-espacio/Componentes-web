@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Asistentes - React con Map Clásico</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+    // Componente con función tradicional
+    function Asistente(props) {
+      return (
+        <div style={{ border: '1px solid black', margin: '10px', padding: '10px' }}>
+          <h2>{props.nombre} {props.emoji}</h2>
+          <p>Tarea: {props.tarea}</p>
+        </div>
+      );
+    }
+    </script>
+
+    <script type="text/babel">
+    function App() {
+      const asistentes = [
+        { nombre: "Juan Pérez", tarea: "Frontend Developer", emoji: "👨‍💻" },
+        { nombre: "Ana Gómez", tarea: "Diseñadora UX/UI", emoji: "🎨" },
+        { nombre: "Carlos Ruiz", tarea: "Backend Developer", emoji: "🖥️" }
+      ];
+
+      return (
+        <div>
+          <h1>Lista de Asistentes</h1>
+          
+          {/* Usamos map con una función anónima tradicional */}
+          {asistentes.map(function(asistente, index) {
+            return (
+              <Asistente 
+                key={index} 
+                nombre={asistente.nombre} 
+                emoji={asistente.emoji} 
+                tarea={asistente.tarea} 
+              />
+            );
+          })}
+
+        </div>
+      );
+    }
+    </script>
+
+    <script type="text/babel">
+    const rootElement = document.getElementById('root');
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<App />);
+    </script>
+
+</body>
+</html>
