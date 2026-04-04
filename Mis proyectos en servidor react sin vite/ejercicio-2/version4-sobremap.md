@@ -39,5 +39,7 @@ Resumen para tu documentación:
  * Mecánica: El método recorre el array de datos y por cada iteración ejecuta React.createElement() (disfrazado de JSX).
  * Resultado: El map genera un nuevo array de "Objetos de React".
  * Renderizado: React detecta este array y renderiza cada componente en el orden en que aparecen, usando la propiedad key para rastrear su posición en el DOM.
+
+
 Entonces, no es que el map esté alterado, es que React es capaz de renderizar arrays directamente. Por eso, el map es la herramienta perfecta para generar interfaces dinámicas sin repetir código.
 ¿Te queda más claro por qué el return de un componente es válido dentro de un map?
