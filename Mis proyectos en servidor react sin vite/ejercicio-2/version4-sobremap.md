@@ -13,9 +13,13 @@ const nombres = ['Ana', 'Juan'].map(function(nombre) {
 // Resultado: ["Hola Ana", "Hola Juan"]
 
 En React, lo que devuelves es JSX. Para el navegador, <Asistente /> no existe, pero Babel (que incluiste en los scripts de tu HTML) lo traduce antes de que se ejecute.
+
+
 2. La transformación real (Lo que ve el navegador)
 Cuando escribes el return con el componente, Babel lo convierte en una función llamada React.createElement().
 Tu fragmento de código se convierte en esto para la computadora:
+
+
 {asistentes.map(function(asistente, index) {
     return React.createElement(Asistente, {
         key: index,
