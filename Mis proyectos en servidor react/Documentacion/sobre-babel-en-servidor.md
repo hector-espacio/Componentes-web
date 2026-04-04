@@ -114,6 +114,8 @@ Diferencias de flujo
 | Velocidad | Lenta (carga pesada). | Instantánea (gracias a esbuild). |
 | Resultado | El navegador lee JSX y Babel lo arregla. | El navegador solo recibe JavaScript estándar. |
 | Configuración | Manual en el <head>. | Automática mediante plugins de Vite. |
+
+
 Una nota sobre las versiones
 Veo que estás usando React 19 y Vite 8. Estás en la cresta de la ola, usando las versiones más recientes. En estas versiones, la transformación es tan eficiente que prácticamente no te enteras de que existe un paso intermedio de compilación.
 Por cierto, ¿te fijaste que en tu devDependencies también tienes ESLint? Ese es el que te pone las líneas rojas en el código cuando te olvidas de algo o cometes un error de sintaxis.
