@@ -1,46 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Explicación de Children</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
 <body>
     <div id="root"></div>
 
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <script type="text/babel">
-        // 1. EL COMPONENTE "CONTENEDOR" (La caja)
-        function CajaDecorada(props) {
+        // 1. El componente que recibe el contenido
+        function Marco(props) {
             return (
-                <div style={{ border: '3px solid gold', padding: '20px', margin: '10px' }}>
-                    <strong>Soy el borde de la caja (Componente)</strong>
-                    <hr />
-                    
-                    {/* AQUÍ es donde React pone lo que escribas entre las etiquetas */}
+                <div style={{ border: "2px solid red" }}>
                     {props.children}
-                    
                 </div>
             );
         }
 
-        // 2. USO DEL COMPONENTE
+        // 2. Aplicación que usa el marco
         function App() {
             return (
-                <div>
-                    <h1>Ejemplo de props.children</h1>
-
-                    {/* Caso A: Metemos un simple texto */}
-                    <CajaDecorada>
-                        <p>Este párrafo es el "child" número 1.</p>
-                    </CajaDecorada>
-
-                    {/* Caso B: Metemos un botón y otra etiqueta */}
-                    <CajaDecorada>
-                        <button>Soy un botón "child"</button>
-                        <p>Yo también estoy dentro.</p>
-                    </CajaDecorada>
-                </div>
+          <>
+                <Marco>
+                    <h1>Esto es el children</h1>
+                </Marco>
+            <br />    
+          <Marco>
+            <h1>yo soy otro hijo
+            </h1>
+          </Marco>
+          </>
             );
         }
 
