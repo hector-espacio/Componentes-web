@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentoLab - E-commerce React</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9; /* Identidad Visual */
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // 1. COMPONENTE DE PRODUCTO (Punto 4 de la imagen)
+        // Usamos estilos tipo "objeto" para simular la modularidad
+        function CardProducto(props) {
+            const estiloCard = {
+                border: '1px solid #ddd',
+                borderRadius: '12px',
+                padding: '15px',
+                backgroundColor: '#fff',
+                textAlign: 'center',
+                boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                transition: 'transform 0.2s'
+            };
+
+            const estiloImagen = {
+                width: '100%',
+                height: '150px',
+                objectFit: 'cover',
+                borderRadius: '8px'
+            };
+
+            return (
+                <div style={estiloCard}>
+                    <img src={props.imagen} alt={props.nombre} style={estiloImagen} />
+                    <h3 style={{ margin: '10px 0' }}>{props.nombre}</h3>
+                    <p style={{ color: '#27ae60', fontWeight: 'bold', fontSize: '1.2em' }}>
+                        ${props.precio}
+                    </p>
+                    <button style={{ 
+                        backgroundColor: '#3498db', 
+                        color: 'white', 
+                        border: 'none', 
+                        padding: '8px 15px', 
+                        borderRadius: '5px',
+                        cursor: 'pointer'
+                    }}>
+                        Comprar
+                    </button>
+                </div>
+            );
+        }
+
+        // 2. COMPONENTE DE LAYOUT (Punto 3 de la imagen)
+        function Layout(props) {
+            const headerStyle = {
+                backgroundColor: '#2c3e50',
+                color: 'white',
+                padding: '1rem',
+                textAlign: 'center'
+            };
+
+            const footerStyle = {
+                backgroundColor: '#2c3e50',
+                color: 'white',
+                padding: '1rem',
+                textAlign: 'center',
+                marginTop: '40px'
+            };
+
+            return (
+                <div>
+                    <header style={headerStyle}>
+                        <h1>Mi Tienda Tech 🚀</h1>
+                        <nav>
+                            <a href="#" style={{color: 'white', margin: '0 10px', textDecoration: 'none'}}>Inicio</a>
+                            <a href="#" style={{color: 'white', margin: '0 10px', textDecoration: 'none'}}>Productos</a>
+                            <a href="#" style={{color: 'white', margin: '0 10px', textDecoration: 'none'}}>Carrito</a>
+                        </nav>
+                    </header>
+
+                    <main className="container">
+                        {props.children}
+                    </main>
+
+                    <footer style={footerStyle}>
+                        <p>&copy; 2024 TalentoLab E-commerce Project</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        // 3. COMPONENTE PRINCIPAL (Punto 6 de la imagen)
+        function App() {
+            // Datos de ejemplo
+            const productos = [
+                { id: 1, nombre: "Laptop Pro", precio: 1200, imagen: "https://via.placeholder.com/150?text=Laptop" },
+                { id: 2, nombre: "Smartphone Z", precio: 800, imagen: "https://via.placeholder.com/150?text=Phone" },
+                { id: 3, nombre: "Auriculares Hi-Fi", precio: 250, imagen: "https://via.placeholder.com/150?text=Audio" },
+                { id: 4, nombre: "Teclado Mecánico", precio: 150, imagen: "https://via.placeholder.com/150?text=Keyboard" }
+            ];
+
+            const gridStyle = {
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '20px',
+                marginTop: '20px'
+            };
+
+            return (
+                <Layout>
+                    <h2>Catálogo de Productos</h2>
+                    <div style={gridStyle}>
+                        {/* Uso de MAP con función tradicional para generar la lista */}
+                        {productos.map(function(item) {
+                            return (
+                                <CardProducto 
+                                    key={item.id}
+                                    nombre={item.nombre}
+                                    precio={item.precio}
+                                    imagen={item.imagen}
+                                />
+                            );
+                        })}
+                    </div>
+                </Layout>
+            );
+        }
+
+        // RENDERIZADO FINAL
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</body>
+</html>
