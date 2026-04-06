@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentoLab - E-commerce Estructurado</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+/* CSS GLOBAL - estilos.css */
+:root {
+    --color-primario: #00d4ff;
+    --color-fondo: #121212;
+    --color-card: #1e1e1e;
+    --texto: #ffffff;
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--color-fondo);
+    color: var(--texto);
+    font-family: var(--fuente-principal);
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: var(--color-primario);
+}
+</style>
+
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // --- ESTILOS TIPO "OBJETO" (Pre-preparación para CSS Modules) ---
+        const estilosLayout = {
+            header: {
+                backgroundColor: '#1e1e1e',
+                padding: '1rem',
+                borderBottom: '2px solid #00d4ff',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center'
+            },
+            nav: {
+                display: 'flex',
+                gap: '15px'
+            },
+            navLink: {
+                color: '#00d4ff',
+                textDecoration: 'none',
+                fontWeight: 'bold'
+            }
+        };
+
+        const estilosProducto = {
+            card: {
+                backgroundColor: '#252525',
+                borderRadius: '10px',
+                padding: '20px',
+                textAlign: 'center',
+                noboxShadow: '0 4px 15px rgba(0,0,0,0.3)',
+                notransition: 'transform 0.2s'
+            },
+            imagen: {
+                width: '100%',
+                borderRadius: '8px',
+                marginBottom: '10px'
+            },
+            boton: {
+                backgroundColor: '#00d4ff',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                fontWeight: 'bold'
+            }
+        };
+
+        const gridEstilo = {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+            gap: '20px',
+            padding: '2rem'
+        };
+
+        // 1. COMPONENTE DE PRODUCTO (Modularizado con estilos de objeto)
+        function CardProducto({ imagen, nombre, precio }) {
+            return (
+                <div style={estilosProducto.card}>
+                    <img src={imagen} alt={nombre} style={estilosProducto.imagen} />
+                    <h3 style={{fontSize: '1.2rem'}}>{nombre}</h3>
+                    <p style={{color: '#00d4ff', fontSize: '1.3rem'}}>${precio}</p>
+                    <button style={estilosProducto.boton}>Comprar</button>
+                </div>
+            );
+        }
+
+        // 2. COMPONENTE DE LAYOUT (Usa clases globales y estilos inline)
+        function Layout(props) {
+            return (
+                <div>
+                    <header style={estilosLayout.header}>
+                        <h1 style={{margin: 0, fontSize: '1.5rem'}}>Talento<span style={{color:'#00d4ff'}}>Lab</span></h1>
+                        <nav style={estilosLayout.nav}>
+                            <a href="#" style={estilosLayout.navLink}>Inicio</a>
+                            <a href="#" style={estilosLayout.navLink}>Productos</a>
+                            <a href="#" style={estilosLayout.navLink}>Carrito</a>
+                        </nav>
+                    </header>
+
+                    <main>{props.children}</main>
+
+                    <footer style={{backgroundColor:'white',  textAlign: 'center', padding: '2rem', color: '#333'}}>
+                        <p>&copy; 2026 E-commerce Lab - Prototipo Modular</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        // 3. COMPONENTE PRINCIPAL (Ensamblado)
+        function App() {
+            const productos = [
+                { id: 1, nombre: "Laptop Pro", precio: 1200, imagen: "https://picsum.photos/200/150?random=1" },
+                { id: 2, nombre: "Smartphone Z", precio: 800, imagen: "https://picsum.photos/200/150?random=2" },
+                { id: 3, nombre: "Auriculares Hi-Fi", precio: 250, imagen: "https://picsum.photos/200/150?random=3" },
+                { id: 4, nombre: "Teclado Mecánico", precio: 150, imagen: "https://picsum.photos/200/150?random=4" }
+            ];
+
+            return (
+                <Layout>
+                    <h2>Catálogo de Productos</h2>
+                    <div style={gridEstilo}>
+                        {productos.map(item => (
+                            <CardProducto 
+                                key={item.id}
+                                nombre={item.nombre}
+                                precio={item.precio}
+                                imagen={item.imagen}
+                            />
+                        ))}
+                    </div>
+                </Layout>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
