@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>React Map con Índice</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            // Definimos el vector
+            const vectorsito = ["Elemento A", "Elemento B", "Elemento C"];
+
+            return (
+                <div>
+                    <h1>Mi Lista con Map</h1>
+                    
+                    {/* Aplicamos exactamente tu lógica */}
+                    {vectorsito.map(function(valor, indice) { 
+                        return (
+                            <div key={indice} style={{ border: '1px solid black', margin: '5px', padding: '5px' }}>             
+                                <strong>Posición {indice}:</strong> {valor}
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+
+        // Renderizado final
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</body>
+</html>
