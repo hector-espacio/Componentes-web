@@ -1,0 +1,67 @@
+
+
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+ <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+<style>
+body { margin: 0; padding: 0; box-sizing: border-box; }
+header{background-color:orange;margin:0;}
+footer{background-color:pink; margin:0;}
+main{background-color:skyblue; margin:0;padding: 10px 0}
+.caja{border:solid black 1px; padding:10px; width:300px; margin:10px}
+.grancaja{display:flex}
+</style>
+
+
+
+ <div id="root"></div>
+
+ <script type="text/babel">
+
+function Elemento({nombre}){
+
+return <>
+<div className="caja">producto: {nombre}</div>
+</>
+}
+
+function Layout(propiedad){
+return <>
+<header>Bienvenidos</header>
+<main>{propiedad.children}</main>
+<footer>Hasta luego</footer>
+</>
+}
+
+function App(){
+const nombres=["Adermicina", "Bengue"];
+
+return <>
+<Layout>
+<h2>Lista de Productos</h2>
+<div className="grancaja">
+  {/* no usar div sino directo al elemento la key sino se rompe flexbox porque seria hijo directo un div contenedor  */}
+{
+nombres.map(function(valor,indice){return(
+<Elemento key={indice} nombre={valor} />
+)}
+
+)
+}
+
+{/* forma manual comentada
+<Elemento nombre={nombres[0]} />
+<Elemento nombre={nombres[1]} />
+*/}
+
+</div>
+</Layout>
+</>
+}
+
+
+ const root = ReactDOM.createRoot(document.getElementById('root'));
+ root.render(<App />);
+    </script>
