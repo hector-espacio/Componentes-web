@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const vectorsito = ["A", "B", "C"];
+
+            // --- PREPARACIÓN PARA LA FORMA 2 ---
+            // Guardamos el resultado del map en una variable antes del return
+            const xx = vectorsito.map(function(valor, indice) {
+                return <div key={indice}>Forma Variable: {valor}</div>;
+            });
+
+            return (
+                <div>
+                    <h3>1. Mapa directo en el Return:</h3>
+                    {/* FORMA 1: El mapa se ejecuta aquí mismo */}
+                    {vectorsito.map(function(valor, indice) {
+                        return <div key={indice}>Forma Directa: {valor}</div>;
+                    })}
+
+                    <hr />
+
+                    <h3>2. Usando el Vector Completo (Variable):</h3>
+                    {/* FORMA 2: Solo mostramos la variable que ya tiene los divs */}
+                    {xx}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
