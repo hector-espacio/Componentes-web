@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Versión con Ciclo FOR
+        function App1() {
+            const vector = ["lunes", "martes", "miercoles"];
+            const elementos = [];
+            for (let i = 0; i < vector.length; i++) {
+                elementos.push(<p key={i}>App1: {vector[i]}</p>);
+            }
+            return <div>{elementos}</div>;
+        }
+
+        // Versión con MAP
+        function App2() {
+            const vector = ["lunes", "martes", "miercoles"];
+            return (
+                <div>
+                    {vector.map((valor, indice) => (
+                        <p key={indice}>App2: {valor}</p>
+                    ))}
+                </div>
+            );
+        }
+
+        // COMPONENTE PRINCIPAL
+        function App() {
+            return (
+                <>
+                    <h2>Renderizando App1:</h2>
+                    <App1 />
+                    <hr />
+                    <h2>Renderizando App2:</h2>
+                    <App2 />
+                </>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
