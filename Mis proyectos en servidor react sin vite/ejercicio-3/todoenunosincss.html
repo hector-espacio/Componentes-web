@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentoLab - E-commerce Estructurado</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // 1. COMPONENTE DE PRODUCTO
+        function CardProducto({ imagen, nombre, precio }) {
+            return (
+                <div>
+                    <img src={imagen} alt={nombre} />
+                    <h3>{nombre}</h3>
+                    <p>${precio}</p>
+                    <button>Comprar</button>
+                </div>
+            );
+        }
+
+        // 2. COMPONENTE DE LAYOUT
+        function Layout(props) {
+            return (
+                <div>
+                    <header>
+                        <h1>Talento<span>Lab</span></h1>
+                        <nav>
+                            <a href="#">Inicio</a>
+                            <a href="#">Productos</a>
+                            <a href="#">Carrito</a>
+                        </nav>
+                    </header>
+
+                    <main>{props.children}</main>
+
+                    <footer>
+                        <p>&copy; 2026 E-commerce Lab - Prototipo Modular</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        // 3. COMPONENTE PRINCIPAL (Ensamblado)
+        function App() {
+            const productos = [
+                { id: 1, nombre: "Laptop Pro", precio: 1200, imagen: "https://picsum.photos/200/150?random=1" },
+                { id: 2, nombre: "Smartphone Z", precio: 800, imagen: "https://picsum.photos/200/150?random=2" },
+                { id: 3, nombre: "Auriculares Hi-Fi", precio: 250, imagen: "https://picsum.photos/200/150?random=3" },
+                { id: 4, nombre: "Teclado Mecánico", precio: 150, imagen: "https://picsum.photos/200/150?random=4" }
+            ];
+
+            return (
+                <Layout>
+                    <h2>Catálogo de Productos</h2>
+                    <div>
+                        {productos.map(item => (
+                            <CardProducto 
+                                key={item.id}
+                                nombre={item.nombre}
+                                precio={item.precio}
+                                imagen={item.imagen}
+                            />
+                        ))}
+                    </div>
+                </Layout>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
