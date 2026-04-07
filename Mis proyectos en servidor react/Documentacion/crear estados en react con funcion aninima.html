@@ -12,34 +12,29 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState } = React;
+       
 
-        function Elemento() {
-            const [fav, setFav] = useState(false);
+const { useState } = React;
 
-            let texto;
-            if (fav == true) {
-                texto = "SI";
-            } else {
-                texto = "NO";
-            }
+function Elemento() {
+    const [fav, setFav] = useState("NO");
 
-            return (
-                <div>
-                    <h1>¿Es favorito?: {texto}</h1>
-                    {/* Aquí insertamos la función anónima directamente */}
-                    <button onClick={function() {
-                        if (fav == true) {
-                            setFav(false);
-                        } else {
-                            setFav(true);
-                        }
-                    }}>
-                        Cambiar estado
-                    </button>
-                </div>
-            );
-        }
+    return (
+        <div>
+            Favorito: {fav}
+            <button onClick={function() {
+                if (fav == "SI") {
+                    setFav("NO");
+                } else {
+                    setFav("SI");
+                }
+            }}>
+                Cambiar
+            </button>
+        </div>
+    );
+}
+
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<Elemento />);
