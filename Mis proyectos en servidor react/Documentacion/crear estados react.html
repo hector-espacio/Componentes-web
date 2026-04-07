@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Concepto de Estado React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Extraemos la función de memoria de la caja de React
+        const { useState } = React;
+
+        function Elemento() {
+            // Definimos el estado inicial (Memoria dinámica)
+            const [fav, setFav] = useState(false);
+
+            // Función tradicional para manejar el evento
+            function manejarClick() {
+                if (fav == true) {
+                    setFav(false);
+                } else {
+                    setFav(true);
+                }
+            }
+
+            // Lógica para decidir qué texto mostrar
+            let texto;
+            if (fav == true) {
+                texto = "SI";
+            } else {
+                texto = "NO";
+            }
+
+            return (
+                <div>
+                    <h1>¿Es favorito?: {texto}</h1>
+                    <button onClick={manejarClick}>
+                        Cambiar estado
+                    </button>
+                </div>
+            );
+        }
+
+        // Renderizado en el DOM
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<Elemento />);
+    </script>
+
+</body>
+</html>
