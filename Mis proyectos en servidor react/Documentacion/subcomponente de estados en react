@@ -1,0 +1,20 @@
+const { useState } = React;
+
+function Elemento() {
+    const [fav, setFav] = useState("NO");
+
+    return (
+        <div>
+            Favorito: {fav}
+            <button onClick={function() {
+                if (fav == "SI") {
+                    setFav("NO");
+                } else {
+                    setFav("SI");
+                }
+            }}>
+                Cambiar
+            </button>
+        </div>
+    );
+}
