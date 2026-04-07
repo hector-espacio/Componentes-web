@@ -1,0 +1,104 @@
+<script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<style>
+  body { margin: 0; padding: 0; box-sizing: border-box; }
+  header{background-color:orange;margin:0;}
+  footer{background-color:pink; margin:0;}
+  main{background-color:skyblue; margin:0;padding: 10px 0}
+  .caja{border:solid black 1px; padding:10px; width:150px; margin:10px} /* Reduje un poco el ancho para que entren más por fila */
+  
+  /* --- AQUÍ ESTÁ EL ARREGLO --- */
+  .grancaja {
+    display: flex;
+    flex-wrap: wrap; /* Esta es la propiedad mágica: permite que los elementos salten de línea */
+  }
+  /* -------------------------- */
+</style>
+
+<div id="root"></div>
+
+<script type="text/babel">
+  const { useState } = React;
+
+  // Componente reutilizable para mostrar un producto
+  function Elemento({ nombre, alClick, textoBoton }) {
+    return (
+      <div className="caja">
+        <p style={{margin: 0}}>producto: <strong>{nombre}</strong></p>
+        <button onClick={() => alClick(nombre)}>{textoBoton}</button>
+      </div>
+    );
+  }
+
+  // Componente de Layout con el contador en el header
+  function Layout({ cantidad, children }) {
+    return (
+      <>
+        <header style={{padding: '10px'}}>Bienvenidos - Items en carrito: {cantidad}</header>
+        <main>{children}</main>
+        <footer>Hasta luego</footer>
+      </>
+    );
+  }
+
+  function App() {
+    // Lista fija de productos disponibles
+    const productosDisponibles = ["Adermicina", "Bengue", "Ibuprofeno", "Buscapina"];
+    
+    // EL ESTADO DEL CARRITO: Una lista de nombres de productos
+    const [carrito, setCarrito] = useState([]);
+
+    // Función para AGREGAR: crea un nuevo array con el producto extra
+    const agregarAlCarrito = (nombreProducto) => {
+      setCarrito([...carrito, nombreProducto]);
+    };
+
+    // Función para QUITAR: elimina TODAS las instancias de ese producto
+    const quitarDelCarrito = (nombreProducto) => {
+      // Filtramos: "crea una lista nueva CON TODO LO QUE NO SEA este producto"
+      const nuevoCarrito = carrito.filter(item => item !== nombreProducto);
+      setCarrito(nuevoCarrito);
+    };
+
+    return (
+      <Layout cantidad={carrito.length}>
+        <div style={{padding: '0 10px'}}>
+          <h2>Lista de Productos</h2>
+          <div className="grancaja">
+            {productosDisponibles.map((producto, indice) => (
+              <Elemento 
+                key={indice} 
+                nombre={producto} 
+                alClick={agregarAlCarrito} 
+                textoBoton="Agregar" 
+              />
+            ))}
+          </div>
+
+          <hr style={{borderColor: 'white', margin: '20px 0'}} />
+
+          <h2>Tu Carrito</h2>
+          <div className="grancaja">
+            {carrito.length === 0 ? (
+              <p style={{margin: '10px'}}>El carrito está vacío</p>
+            ) : (
+              carrito.map((producto, indice) => (
+                <Elemento 
+                  key={indice} // Nota: Usar índice como key en una lista que cambia no es ideal, pero para este ejemplo simple sirve.
+                  nombre={producto} 
+                  alClick={quitarDelCarrito} 
+                  textoBoton="Quitar" 
+                />
+              ))
+            )}
+          </div>
+        </div>
+      </Layout>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<App />);
+</script>
