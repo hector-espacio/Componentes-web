@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Filtro por Índice</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { font-family: sans-serif; margin: 0; padding: 0; }
+        header { background-color: orange; padding: 15px; font-weight: bold; }
+        footer { background-color: pink; padding: 10px; text-align: center; }
+        main { background-color: skyblue; min-height: 80vh; padding: 20px; }
+        
+        .grancaja { display: flex; flex-wrap: wrap; gap: 10px; }
+        .caja { 
+            border: solid black 1px; 
+            padding: 10px; 
+            background: white; 
+            width: 150px; 
+            border-radius: 5px;
+        }
+        button { margin-top: 5px; cursor: pointer; }
+        hr { border: 1px solid white; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Componente para cada cuadrito de producto
+        function Elemento({ nombre, alClick, idOIndice, textoBoton }) {
+            return (
+                <div className="caja">
+                    <p style={{margin: 0}}>Producto: <strong>{nombre}</strong></p>
+                    {/* Al hacer clic, pasamos el identificador (nombre o índice) */}
+                    <button onClick={() => alClick(idOIndice)}>{textoBoton}</button>
+                </div>
+            );
+        }
+
+        function App() {
+            const productosDisponibles = ["Adermicina", "Bengue", "Ibuprofeno", "Buscapina"];
+            const [carrito, setCarrito] = useState([]);
+
+            // Para AGREGAR usamos el nombre
+            const agregarAlCarrito = (nombreProducto) => {
+                setCarrito([...carrito, nombreProducto]);
+            };
+
+            // PARA QUITAR: Ahora usamos el ÍNDICE (la posición en el vector)
+            const quitarDelCarrito = (indiceABorrar) => {
+                // El filter recorre el carrito y nos da el "item" y su "posicion" (indiceActual)
+                const nuevoCarrito = carrito.filter((item, indiceActual) => {
+                    // "Si esta posición NO es la que quiero borrar, que se quede"
+                    return indiceActual !== indiceABorrar;
+                });
+                setCarrito(nuevoCarrito);
+            };
+
+            return (
+                <div>
+                    <header>Items en carrito: {carrito.length}</header>
+                    
+                    <main>
+                        <h2>Lista de Productos</h2>
+                        <div className="grancaja">
+                            {productosDisponibles.map((producto, i) => (
+                                <Elemento 
+                                    key={i} 
+                                    nombre={producto} 
+                                    idOIndice={producto} 
+                                    alClick={agregarAlCarrito} 
+                                    textoBoton="Agregar" 
+                                />
+                            ))}
+                        </div>
+
+                        <hr />
+
+                        <h2>Tu Carrito (Haz clic para borrar solo ese)</h2>
+                        <div className="grancaja">
+                            {carrito.length === 0 ? (
+                                <p>El carrito está vacío</p>
+                            ) : (
+                                carrito.map((producto, indice) => (
+                                    <Elemento 
+                                        key={indice} 
+                                        nombre={producto} 
+                                        idOIndice={indice} // PASAMOS LA POSICIÓN REAL
+                                        alClick={quitarDelCarrito} 
+                                        textoBoton="Quitar" 
+                                    />
+                                ))
+                            )}
+                        </div>
+                    </main>
+
+                    <footer>Hasta luego</footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
