@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Componente simple: recibe el nombre y el índice (posicion)
+        function Elemento({ nombre, alClick, posicion, textoBoton }) {
+            return (
+                <div style={{ border: "1px solid black", margin: "5px", padding: "5px" }}>
+                    <span>{nombre}</span>
+                    <button onClick={() => alClick(posicion)}>{textoBoton}</button>
+                </div>
+            );
+        }
+
+        function App() {
+            const productosDisponibles = ["Adermicina", "Bengue", "Ibuprofeno", "Buscapina"];
+            const [carrito, setCarrito] = useState([]);
+
+            // Al agregar, el "posicion" que mandamos es el nombre del producto
+            const agregarAlCarrito = (nombre) => {
+                setCarrito([...carrito, nombre]);
+            };
+
+            // Al quitar, usamos el índice para que filter sepa cuál borrar
+            const quitarDelCarrito = (indiceABorrar) => {
+                const nuevoCarrito = carrito.filter((item, indiceActual) => {
+                    // Solo se quedan los que NO coinciden con la posición clickeada
+                    return indiceActual !== indiceABorrar;
+                });
+                setCarrito(nuevoCarrito);
+            };
+
+            return (
+                <div>
+                    <h1>Items: {carrito.length}</h1>
+                    
+                    <h3>Productos para agregar:</h3>
+                    {productosDisponibles.map((prod, i) => (
+                        <Elemento 
+                            key={i} 
+                            nombre={prod} 
+                            posicion={prod} 
+                            alClick={agregarAlCarrito} 
+                            textoBoton="Agregar" 
+                        />
+                    ))}
+
+                    <hr />
+
+                    <h3>Tu Carrito (Borra el exacto):</h3>
+                    {carrito.map((prod, i) => (
+                        <Elemento 
+                            key={i} 
+                            nombre={prod} 
+                            posicion={i} // <--- AQUÍ PASAMOS LA POSICIÓN
+                            alClick={quitarDelCarrito} 
+                            textoBoton="Quitar" 
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
