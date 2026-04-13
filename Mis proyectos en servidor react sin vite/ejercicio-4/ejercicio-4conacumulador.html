@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrito React - Cantidades Agrupadas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: #1a202c;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #root {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 1100px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1a202c;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            border-bottom: 4px solid #3182ce;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #4a5568;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-container { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .grid-container { grid-template-columns: 1fr; }
+        }
+
+        .item-card {
+            border: 1px solid #000;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: #f1f5f9;
+        }
+
+        .item-card span {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .cantidad-badge {
+            background: #3182ce;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            margin-left: 5px;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-agregar { background-color: #3182ce; color: white; }
+        .btn-quitar { background-color: #e53e3e; color: white; }
+
+        hr { border: 0; border-top: 2px solid #edf2f7; margin: 40px 0; }
+
+        .empty-msg {
+            grid-column: span 4;
+            text-align: center;
+            color: #a0aec0;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function Elemento({ nombre, cantidad, alClick, idIdentificador, textoBoton, esCarrito }) {
+            return (
+                <div className="item-card">
+                    <span>
+                        {nombre} 
+                        {esCarrito && <span className="cantidad-badge">x{cantidad}</span>}
+                    </span>
+                    <button 
+                        className={esCarrito ? "btn-quitar" : "btn-agregar"} 
+                        onClick={() => alClick(idIdentificador)}
+                    >
+                        {textoBoton}
+                    </button>
+                </div>
+            );
+        }
+
+        function App() {
+            const productosDisponibles = ["Adermicina", "Bengue", "Ibuprofeno", "Buscapina"];
+            const [carrito, setCarrito] = useState([]);
+
+            const agregarAlCarrito = (nombre) => {
+                setCarrito(prev => {
+                    const existe = prev.find(item => item.nombre === nombre);
+                    if (existe) {
+                        return prev.map(item => 
+                            item.nombre === nombre ? { ...item, cantidad: item.cantidad + 1 } : item
+                        );
+                    }
+                    return [...prev, { nombre, cantidad: 1 }];
+                });
+            };
+
+            const quitarDelCarrito = (nombre) => {
+                setCarrito(prev => prev.filter(item => item.nombre !== nombre));
+            };
+
+            // Calculamos el total de items sumando todas las cantidades
+            const totalItems = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+
+            return (
+                <div>
+                    <h1>CARRITO DE COMPRAS</h1>
+
+                    <h3>Catálogo Disponible</h3>
+                    <div className="grid-container">
+                        {productosDisponibles.map((prod, i) => (
+                            <Elemento 
+                                key={"d-"+i} 
+                                nombre={prod} 
+                                idIdentificador={prod}
+                                alClick={agregarAlCarrito} 
+                                textoBoton="Agregar" 
+                                esCarrito={false}
+                            />
+                        ))}
+                    </div>
+
+                    <hr />
+
+                    <h3>Tu Selección ({totalItems} unidades)</h3>
+                    <div className="grid-container">
+                        {carrito.length === 0 ? 
+                            <div className="empty-msg">El carrito está vacío.</div> : 
+                            carrito.map((item, i) => (
+                                <Elemento 
+                                    key={"c-"+i} 
+                                    nombre={item.nombre} 
+                                    cantidad={item.cantidad}
+                                    idIdentificador={item.nombre}
+                                    alClick={quitarDelCarrito} 
+                                    textoBoton="Quitar todo" 
+                                    esCarrito={true}
+                                />
+                            ))
+                        }
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
