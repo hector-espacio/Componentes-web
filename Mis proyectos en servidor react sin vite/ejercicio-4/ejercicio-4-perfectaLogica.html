@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // Componente Perfeccionado: ya no confunde índice con producto
+        function Elemento({ nombre, alClick, posicion, textoBoton }) {
+            
+            const manejarClick = () => {
+                // Si la posicion es -1, es un producto nuevo (mandamos el nombre)
+                if (posicion === -1) {
+                    alClick(nombre);
+                } else {
+                    // Si tiene posicion real, mandamos el índice para borrar
+                    alClick(posicion);
+                }
+            };
+
+            return (
+                <div style={{ border: "1px solid black", margin: "5px", padding: "5px" }}>
+                    <span>{nombre}</span>
+                    <button onClick={manejarClick}>{textoBoton}</button>
+                </div>
+            );
+        }
+
+        function App() {
+            const productosDisponibles = ["Adermicina", "Bengue", "Ibuprofeno", "Buscapina"];
+            const [carrito, setCarrito] = useState([]);
+
+            const agregarAlCarrito = (nombre) => {
+                setCarrito([...carrito, nombre]);
+            };
+
+            const quitarDelCarrito = (indiceABorrar) => {
+                const nuevoCarrito = carrito.filter((item, indiceActual) => {
+                    return indiceActual !== indiceABorrar;
+                });
+                setCarrito(nuevoCarrito);
+            };
+
+            return (
+                <div>
+                    <h1>Items: {carrito.length}</h1>
+                    
+                    <h3>Productos para agregar:</h3>
+                    {productosDisponibles.map((prod, i) => (
+                        <Elemento 
+                            key={i} 
+                            nombre={prod} 
+                            posicion={-1} // Indica que no tiene índice en el carrito
+                            alClick={agregarAlCarrito} 
+                            textoBoton="Agregar" 
+                        />
+                    ))}
+
+                    <hr />
+
+                    <h3>Tu Carrito (Borra el exacto):</h3>
+                    {carrito.map((prod, i) => (
+                        <Elemento 
+                            key={i} 
+                            nombre={prod} 
+                            posicion={i} // Indica su posición real para el filter
+                            alClick={quitarDelCarrito} 
+                            textoBoton="Quitar" 
+                        />
+                    ))}
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
