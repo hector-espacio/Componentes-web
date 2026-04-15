@@ -1,0 +1,50 @@
+<style>
+details {
+  border: 1px solid #000;
+  margin: 10px 0;
+border-radius:10px;
+}
+
+summary {
+  padding: 10px;
+  cursor: pointer;
+  background: lightblue;
+  list-style: none;
+  font-weight: bold;
+border-radius:10px 10px 10px 10px;
+ 
+}
+  summary:hover{color: #333}
+
+/* Cuando se abre, le ponemos borde abajo al título */
+details[open] summary {
+  border-bottom: 1px solid #000;
+  border-radius:10px 10px 0px 0px;
+
+}
+
+  
+ details[open] > *:not(summary){
+
+  display: block;
+   color: black;
+  background-color: white;
+  border-radius:0px 0px 10px 10px;
+  }
+  
+  details[open] p {
+  margin: 0;
+  padding: 10px;
+}
+</style>
+  
+
+
+<p>Se presentan diversos <strong>temas y estilos de CSS</strong> para la sección de presentación ("Content Hero"), los cuales se detallan a continuación:</p>
+<ul>
+<li><strong>Naranja Vibrante Moderno:</strong> Un diseño con color de fondo completo, bordes redondeados para dar un efecto de tarjeta profesional.aaaaaaa</li>
+  
+  <details>
+  <summary>Haz clic aquí para ver el secreto</summary>
+  <p>Link en github: <a target="_blanck" href="https://raw.githubusercontent.com/hector-espacio/Componentes-web/refs/heads/inicial/recursosweb/content-hero/Ejemplo1-NaranjaModerno.html">codigo naranja moderno</a></p>
+</details>
