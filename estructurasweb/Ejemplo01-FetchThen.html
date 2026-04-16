@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch Limpio</title>
+</head>
+<body>
+
+    <h1>Estado:</h1>
+    <div id="contenedor">Cargando...</div>
+
+    <script>
+        fetch('datos.json')
+            .then(respuesta => {
+                if (!respuesta.ok) {
+                    throw new Error("Servidor prendido sin encontrar archivo");
+                }
+                return respuesta.json();
+            })
+            .then(datos => {
+                document.getElementById('contenedor').innerHTML = `Datos: ${datos.nombre}`;
+            })
+            .catch(error => {
+                const caja = document.getElementById('contenedor');
+                
+                if (error.message.includes("prendido")) {
+                    caja.innerHTML = `<b style="color:orange;">${error.message}</b>`;
+                } else {
+                    caja.innerHTML = `<b style="color:red;">Servidor apagado</b>`;
+                }
+            });
+    </script>
+
+</body>
+</html>
+
+<!-- 
+abris la consola
+te dirigis ala carpeta donde tengas el index
+mi-maquina:~$cd /home/usuario
+
+ejecutas el servidor python:
+mi-maquina:~$ python3 m http.server 8000
+
+abris en el navegador:
+http://localhost:8000
+-->
