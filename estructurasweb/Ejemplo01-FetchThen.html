@@ -18,7 +18,7 @@
                 return respuesta.json();
             })
             .then(datos => {
-                document.getElementById('contenedor').innerHTML = `Datos: ${datos.nombre}<br>
+                document.getElementById('contenedor').innerHTML = `Nombre: ${datos.nombre}<br>
 Edad: ${datos.edad}<br>
 Pagina: ${datos.web}
 `;
