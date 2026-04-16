@@ -1,283 +1,178 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publicación - Expansión Tecnológica</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* Se eliminó la importación externa de Google Fonts */
 
-  body {
-    background: #f0f4f8;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .card {
-    background: #ffffff;
+  .pub-wrap {
+    /* Fuente sans-serif del sistema: limpia y legible */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    max-width: 640px;
+    background: #fff;
+    padding: 40px 44px;
     border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    max-width: 80%;
-    width: 100%;
-    padding: 48px 52px;
-    position: relative;
-    overflow: hidden;
-
+    border-radius: 16px;
   }
 
-
-
-  /* Decorative background glow */
-  .card::before { display: none; }
-  .card::after  { display: none; }
-
-  /* Header */
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 32px;
-
-  }
-
-  .avatar {
-    width: 48px; height: 48px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #38bdf8, #6366f1);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-
-  .author-info .name {
-    font-size: 15px;
-    font-weight: 500;
-    color: #1e293b;
-  }
-
-  .author-info .role {
-    font-size: 12px;
-    color: #64748b;
-    margin-top: 2px;
-  }
-
-  /* Tags */
-  .tags {
+  .pub-tags {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 28px;
-    animation: fadeUp 0.8s 0.2s ease both;
+    margin-bottom: 20px;
   }
 
-  .tag {
-    padding: 5px 14px;
+  .pub-tag {
+    padding: 4px 12px;
     border-radius: 100px;
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
+    font-weight: 600;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
   }
 
-  .tag-blue  { background: rgba(56,189,248,0.12); color: #38bdf8; border: 1px solid rgba(56,189,248,0.25); }
-  .tag-indigo{ background: rgba(99,102,241,0.12);  color: #818cf8; border: 1px solid rgba(99,102,241,0.25); }
-  .tag-green { background: rgba(52,211,153,0.12);  color: #34d399; border: 1px solid rgba(52,211,153,0.25); }
+  .tag-blue   { background: #e0f2fe; color: #0369a1; }
+  .tag-indigo { background: #ede9fe; color: #4f46e5; }
+  .tag-green  { background: #d1fae5; color: #065f46; }
 
-  /* Headline */
-  .headline {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
+  .pub-title {
+    /* Fuente serif del sistema para un toque elegante y profesional */
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-size: 28px;
     font-weight: 900;
-    line-height: 1.2;
+    line-height: 1.25;
     color: #0f172a;
-    margin-bottom: 28px;
-
+    margin: 0 0 8px 0;
   }
 
-  .headline span {
-    background: linear-gradient(90deg, #38bdf8, #818cf8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .pub-title span { color: #0ea5e9; }
+
+  .pub-divider {
+    height: 2px;
+    background: #f1f5f9;
+    margin: 20px 0;
   }
 
-  /* Divider */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, #e2e8f0, #cbd5e1, #e2e8f0);
-    margin-bottom: 28px;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  /* Body text */
-  .body-text {
+  .pub-body {
     color: #475569;
-    font-size: 1.3rem;
+    font-size: 15px;
     line-height: 1.8;
-    animation: fadeUp 0.8s 0.35s ease both;
+    margin: 0 0 20px 0;
   }
 
-  .body-text p { margin-bottom: 20px; }
-  .body-text p:last-child { margin-bottom: 0; }
-
-  .highlight {
-    color: #0f172a;
-    font-weight: 500;
-  }
-
-  /* Section blocks */
-  .section-block {
+  .pub-block {
     background: #f8fafc;
-    border: 1px solid #e2e8f0;
     border-left: 3px solid #0ea5e9;
-    border-radius: 0 10px 10px 0;
-    padding: 16px 20px;
-    margin: 24px 0;
-
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-bottom: 16px;
   }
 
-  .section-block.indigo { border-left-color: #6366f1; }
-  .section-block.green  { border-left-color: #10b981; }
+  .pub-block.indigo { border-left-color: #6366f1; }
+  .pub-block.green  { border-left-color: #10b981; }
 
-  .section-block .section-title {
-    font-size: 1.3rem;
-    font-weight: 600;
+  .pub-block-title {
+    font-size: 10px;
+    font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #0ea5e9;
     margin-bottom: 8px;
   }
 
-  .section-block.indigo .section-title { color: #6366f1; }
-  .section-block.green  .section-title { color: #10b981; }
+  .pub-block.indigo .pub-block-title { color: #6366f1; }
+  .pub-block.green  .pub-block-title { color: #10b981; }
 
-  .section-block p {
+  .pub-block p {
     color: #475569;
-    font-size: 1.3rem;
-    line-height: 1.7;
+    font-size: 14px;
+    line-height: 1.75;
     margin: 0;
   }
 
-  /* Jobs list */
-  .jobs-list {
+  .pub-block ul {
     list-style: none;
-    margin-top: 12px;
+    padding: 0;
+    margin: 8px 0 0 0;
   }
 
-  .jobs-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+  .pub-block ul li {
     color: #475569;
-    font-size: 1.3rem;
-    line-height: 1.6;
-    padding: 5px 0;
+    font-size: 14px;
+    line-height: 1.7;
+    padding: 3px 0 3px 18px;
+    position: relative;
   }
 
-  .jobs-list li::before {
+  .pub-block ul li::before {
     content: '→';
+    position: absolute;
+    left: 0;
     color: #10b981;
-    font-size: 1.3rem;
-    margin-top: 2px;
-    flex-shrink: 0;
+    font-size: 12px;
   }
 
-  .cta {
-    margin-top: 32px;
-    padding-top: 24px;
+  .pub-cta {
     border-top: 1px solid #e2e8f0;
+    padding-top: 18px;
+    margin-top: 20px;
     font-size: 14px;
     color: #64748b;
-
   }
 
-  .cta strong {
-    color: #0ea5e9;
-  }
+  .pub-cta strong { color: #0ea5e9; }
 
-  /* Hashtags */
-  .hashtags {
-    margin-top: 16px;
+  .pub-hashtags {
+    margin-top: 14px;
     display: flex;
     flex-wrap: wrap;
-font-size:1.3rem;
-    gap: 8px;
-
+    gap: 6px;
   }
 
-  .hashtags span {
-    color: #94a3b8;
-font-size:1.3rem;
-    cursor: pointer;
-  }
-
-  .hashtags span:hover { color: #0ea5e9; }
+  .pub-hashtags span { color: #94a3b8; font-size: 13px; }
 </style>
-</head>
-<body>
-<div class="card">
 
-  <div class="header">
-    <div class="avatar">🚀</div>
-    <div class="author-info">
-      <div class="name">Expansión Empresarial</div>
-      <div class="role">Inversión · Tecnología · Crecimiento</div>
-    </div>
+<div class="pub-wrap">
+
+  <div class="pub-tags">
+    <span class="pub-tag tag-blue">React</span>
+    <span class="pub-tag tag-indigo">JSON</span>
+    <span class="pub-tag tag-green">Nuevas oportunidades</span>
   </div>
 
-  <div class="tags">
-    <span class="tag tag-blue">React</span>
-    <span class="tag tag-indigo">JSON</span>
-    <span class="tag tag-green">Nuevas oportunidades</span>
-  </div>
-
-  <h1 class="headline">
+  <h2 class="pub-title">
     Dando el siguiente paso:<br>
     <span>tecnología como motor de crecimiento</span>
-  </h1>
+  </h2>
 
-  <div class="divider"></div>
+  <div class="pub-divider"></div>
 
-  <div class="body-text">
+  <p class="pub-body">
+    Estoy muy emocionado de compartir que nuestra empresa está embarcándose en una
+    <strong>nueva etapa de expansión tecnológica</strong>. Hemos decidido invertir en
+    el aprendizaje e implementación de <strong>React y JSON</strong>, dos de las herramientas
+    más relevantes del desarrollo moderno.
+  </p>
+
+  <div class="pub-block">
+    <div class="pub-block-title">💡 ¿Por qué React y JSON?</div>
     <p>
-      Estoy muy emocionado de compartir que nuestra empresa está embarcándose en
-      una <span class="highlight">nueva etapa de expansión tecnológica</span>.
-      Hemos decidido invertir en el aprendizaje y la implementación de
-      <span class="highlight">React y JSON</span>, dos de las herramientas más
-      relevantes del desarrollo moderno.
+      Esta no es solo una decisión técnica, es una <strong>inversión estratégica</strong>
+      en el futuro de la empresa. React nos permite construir interfaces dinámicas y escalables.
+      JSON nos abre la puerta a integraciones modernas y flujos de trabajo más ágiles.
+      Juntos forman la base de casi cualquier producto digital competitivo hoy en día.
     </p>
   </div>
 
-  <div class="section-block">
-    <div class="section-title">💡 ¿Por qué React y JSON?</div>
+  <div class="pub-block indigo">
+    <div class="pub-block-title">📈 Una inversión con visión de futuro</div>
     <p>
-      Esta no es simplemente una decisión técnica, es una <strong style="color:#0f172a">inversión estratégica</strong>
-      en el futuro de la empresa. React nos permite construir interfaces dinámicas,
-      escalables y de alto rendimiento. JSON, como lenguaje de intercambio de datos,
-      nos abre la puerta a integraciones modernas y flujos de trabajo más ágiles.
-      Juntos, forman la base de casi cualquier producto digital competitivo hoy en día.
+      Capacitarnos en estas herramientas nos posiciona mejor frente a la competencia,
+      nos permite ofrecer <strong>productos de mayor calidad</strong> y nos prepara
+      para las demandas del mercado digital actual.
     </p>
   </div>
 
-  <div class="section-block indigo">
-    <div class="section-title">📈 Una inversión con visión de futuro</div>
-    <p>
-      Entendemos que adoptar nuevas tecnologías requiere tiempo, dedicación y recursos.
-      Pero estamos convencidos de que capacitarnos en estas herramientas nos posiciona
-      mejor frente a la competencia, nos permite ofrecer <strong style="color:#0f172a">productos de mayor calidad</strong>
-      y nos prepara para las demandas del mercado digital actual.
-    </p>
-  </div>
-
-  <div class="section-block green">
-    <div class="section-title">💼 Nuevas oportunidades laborales</div>
-    <p>Este crecimiento tecnológico abre posibilidades reales para nuevos roles dentro de la empresa:</p>
-    <ul class="jobs-list">
+  <div class="pub-block green">
+    <div class="pub-block-title">💼 Nuevas oportunidades laborales</div>
+    <p>Este crecimiento abre posibilidades reales para nuevos roles:</p>
+    <ul>
       <li>Desarrolladores frontend especializados en React</li>
       <li>Integradores de APIs y manejo de datos con JSON</li>
       <li>Diseñadores UI/UX orientados a interfaces modernas</li>
@@ -286,32 +181,26 @@ font-size:1.3rem;
     </ul>
   </div>
 
-  <div class="body-text">
-    <p>
-      Cada paso hacia la innovación genera nuevas necesidades, y esas necesidades
-      se traducen en <span class="highlight">trabajo real para personas reales</span>.
-      Estamos construyendo no solo una empresa más moderna,
-      sino un equipo con más capacidades y más futuro.
-    </p>
-  </div>
+  <p class="pub-body">
+    Cada paso hacia la innovación genera nuevas necesidades, y esas necesidades
+    se traducen en <strong>trabajo real para personas reales</strong>. Estamos
+    construyendo no solo una empresa más moderna, sino un equipo con más
+    capacidades y más futuro.
+  </p>
 
-  <div class="cta">
+  <div class="pub-cta">
     ¿Trabajás con React o JSON? ¿Te interesa ser parte de este crecimiento?
     <strong>¡Me encantaría leer tu experiencia en los comentarios! 👇</strong>
-  </div>
-
-  <div class="hashtags">
-    <span>#React</span>
-    <span>#JSON</span>
-    <span>#Tecnología</span>
-    <span>#Crecimiento</span>
-    <span>#DesarrolloWeb</span>
-    <span>#Emprendimiento</span>
-    <span>#InversiónTecnológica</span>
-    <span>#NuevosEmpleos</span>
-    <span>#Innovación</span>
+    <div class="pub-hashtags">
+      <span>#React</span>
+      <span>#JSON</span>
+      <span>#Tecnología</span>
+      <span>#Crecimiento</span>
+      <span>#DesarrolloWeb</span>
+      <span>#Emprendimiento</span>
+      <span>#InversiónTecnológica</span>
+      <span>#NuevosEmpleos</span>
+    </div>
   </div>
 
 </div>
-</body>
-</html>
