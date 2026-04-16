@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nombre": "Silvia",
+    "email": "silvia@empresa.com",
+    "puesto": "Product Owner",
+    "foto": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 2,
+    "nombre": "Juan",
+    "email": "juan@empresa.com",
+    "puesto": "Tech Lead",
+    "foto": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 3,
+    "nombre": "Elena",
+    "email": "elena@empresa.com",
+    "puesto": "UX Designer",
+    "foto": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 4,
+    "nombre": "Lucas",
+    "email": "lucas@empresa.com",
+    "puesto": "Developer",
+    "foto": "https://via.placeholder.com/150"
+  }
+]
