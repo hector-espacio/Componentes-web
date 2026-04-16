@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Práctico - Directorio</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        // COMPONENTE: Tarjeta de Contacto
+        // Se encarga únicamente de mostrar los datos de una persona
+        function TarjetaContacto(props) {
+            var usuario = props.usuario;
+            
+            return (
+                <div style={{ border: '1px solid black', margin: '10px', padding: '10px', width: '200px', display: 'inline-block', verticalAlign: 'top' }}>
+                    <img src={usuario.foto} alt={usuario.nombre} style={{ width: '100%' }} />
+                    <h3>{usuario.nombre}</h3>
+                    <p><strong>Puesto:</strong> {usuario.puesto}</p>
+                    <p><strong>Email:</strong> {usuario.email}</p>
+                </div>
+            );
+        }
+
+        // COMPONENTE: Directorio
+        // Maneja la lógica de fetch, estados de carga y error
+        function Directorio() {
+            // Definición de estados con nombres claros
+            var estadoNosotros = React.useState([]);
+            var nosotros = estadoNosotros[0];
+            var setNosotros = estadoNosotros[1];
+
+            var estadoCargando = React.useState(true);
+            var cargando = estadoCargando[0];
+            var setCargando = estadoCargando[1];
+
+            var estadoError = React.useState(null);
+            var error = estadoError[0];
+            var setError = estadoError[1];
+
+            // Hook para cargar los datos al iniciar
+            React.useEffect(function() {
+                fetch('./nosotros.json')
+                    .then(function(respuesta) {
+                        if (respuesta.ok) {
+                            return respuesta.json();
+                        } else {
+                            throw new Error("No se pudo cargar el archivo JSON");
+                        }
+                    })
+                    .then(function(datos) {
+                        setNosotros(datos);
+                        setCargando(false);
+                    })
+                    .catch(function(err) {
+                        setError(err.message);
+                        setCargando(false);
+                    });
+            }, []);
+
+            // RENDERIZADO CONDICIONAL
+
+            // 1. Si está cargando
+            if (cargando) {
+                return <h2>Cargando equipo...</h2>;
+            }
+
+            // 2. Si hubo un error
+            if (error) {
+                return <h2 style={{ color: 'red' }}>Error: {error}</h2>;
+            }
+
+            // 3. Si todo está bien, mapear y mostrar tarjetas
+            return (
+                <div>
+                    <h2>Nuestro Equipo</h2>
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                        {nosotros.map(function(persona) {
+                            return <TarjetaContacto key={persona.id} usuario={persona} />;
+                        })}
+                    </div>
+                </div>
+            );
+        }
+
+        // COMPONENTE PRINCIPAL: App
+        function App() {
+            return (
+                <div>
+                    <header>
+                        <h1>Directorio de Contactos</h1>
+                        <hr />
+                    </header>
+
+                    <main>
+                        <Directorio />
+                    </main>
+
+                    <footer style={{ marginTop: '50px' }}>
+                        <hr />
+                        <p>© 2024 - Ejercicio de Práctica</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        // Renderizar la aplicación en el DOM
+        var root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+
+    </script>
+</body>
+</html>
