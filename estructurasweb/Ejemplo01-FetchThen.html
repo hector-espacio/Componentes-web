@@ -17,7 +17,10 @@
                 return respuesta.json();
             })
             .then(datos => {
-                document.getElementById('contenedor').innerHTML = `Datos: ${datos.nombre}`;
+                document.getElementById('contenedor').innerHTML = `Datos: ${datos.nombre}<br>
+Edad: ${datos.edad}<br>
+Pagina: ${datos.web}
+`;
             })
             .catch(error => {
                 const caja = document.getElementById('contenedor');
