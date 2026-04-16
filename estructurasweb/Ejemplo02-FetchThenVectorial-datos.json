@@ -1,0 +1,12 @@
+[
+  { "nombre": "Alejandro", "edad": 28, "web": "alejandro.dev" },
+  { "nombre": "Beatriz", "edad": 34, "web": "beatriz.design" },
+  { "nombre": "Carlos", "edad": 22, "web": "carlos.code" },
+  { "nombre": "Diana", "edad": 29, "web": "diana.tech" },
+  { "nombre": "Eduardo", "edad": 41, "web": "eduardo.io" },
+  { "nombre": "Fernanda", "edad": 26, "web": "fer.nanda" },
+  { "nombre": "Gabriel", "edad": 31, "web": "gabriel.blog" },
+  { "nombre": "Helena", "edad": 27, "web": "helena.site" },
+  { "nombre": "Iván", "edad": 35, "web": "ivan.net" },
+  { "nombre": "Julia", "edad": 24, "web": "julia.app" }
+]
