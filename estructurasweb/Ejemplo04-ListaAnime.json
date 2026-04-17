@@ -1,0 +1,52 @@
+[
+  {
+    "anime": "Toradora",
+    "genero": "Romance",
+    "imagen": "toradora"
+  },
+  {
+    "anime": "Air tv",
+    "genero": "Drama",
+    "imagen": "air-tv"
+  },
+  {
+    "anime": "Clannad",
+    "genero": "Drama",
+    "imagen": "clannad"
+  },
+  {
+    "anime": "Re zero",
+    "genero": "Fantasía",
+    "imagen": "re-zero"
+  },
+  {
+    "anime": "Death note",
+    "genero": "Suspenso",
+    "imagen": "death-note"
+  },
+  {
+    "anime": "Elfen lied",
+    "genero": "Terror",
+    "imagen": "elfen-lied"
+  },
+  {
+    "anime": "Tensei shitara slime datta ken",
+    "genero": "Isekai",
+    "imagen": "tensei-shitara-slime-datta-ken"
+  },
+  {
+    "anime": "Tate no yuusha no nariagari",
+    "genero": "Isekai",
+    "imagen": "tate-no-yuusha-no-nariagari"
+  },
+  {
+    "anime": "Golden time",
+    "genero": "Romance",
+    "imagen": "golden-time"
+  },
+  {
+    "anime": "Kuroko no basket",
+    "genero": "Deportes",
+    "imagen": "kuroko-no-basket"
+  }
+]
