@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Animes - Estilo Plano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --border-color: #d1d8e0;
+            --accent-color: #4b7bec;
+            --text-main: #2d3436;
+            --text-sub: #778ca3;
+            --tag-bg: #f1f2f6;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid var(--text-main);
+            display: table;
+            margin: 0 auto 40px auto;
+            padding-bottom: 10px;
+        }
+
+        #contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .card-genre {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            background-color: var(--tag-bg);
+            padding: 5px 10px;
+            width: fit-content;
+            font-weight: bold;
+        }
+
+        .card-img-path {
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            border-top: 1px solid var(--tag-bg);
+            padding-top: 10px;
+        }
+
+        /* Mensajes de estado */
+        .status-msg {
+            text-align: center;
+            padding: 15px;
+            border: 2px dashed var(--border-color);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CATÁLOGO ANIME</h1>
+    <div id="contenedor" class="status-msg">Cargando datos...</div>
+
+    <script>
+        fetch('animes.json')
+            .then(respuesta => {
+                if (!respuesta.ok) {
+                    throw new Error("Servidor prendido sin encontrar archivo");
+                }
+                return respuesta.json();
+            })
+            .then(datos => {
+                let contenido = "";
+
+                datos.forEach(item => {
+                    contenido += `
+                        <div class="card">
+                            <div class="card-title">${item.anime}</div>
+                            <div class="card-genre">${item.genero}</div>
+                            <div class="card-img-path">Referencia: ${item.imagen}</div>
+                        </div>`;
+                });
+
+                document.getElementById('contenedor').classList.remove('status-msg');
+                document.getElementById('contenedor').innerHTML = contenido;
+            })
+            .catch(error => {
+                const caja = document.getElementById('contenedor');
+                caja.style.borderColor = "red";
+                
+                if (error.message.includes("prendido")) {
+                    caja.innerHTML = `<b style="color:orange;">${error.message}</b>`;
+                } else {
+                    caja.innerHTML = `<b style="color:red;">Servidor apagado</b>`;
+                }
+            });
+    </script>
+
+</body>
+</html>
