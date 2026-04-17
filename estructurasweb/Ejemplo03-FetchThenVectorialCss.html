@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch Limpio - Moderno</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Estilos Modernos y Claros */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: #1e293b;
+            font-weight: 300;
+        }
+
+        #contenedor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+
+        .tarjeta {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+        }
+
+        .tarjeta b {
+            color: #2563eb;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .info {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #64748b;
+        }
+
+        .web-link {
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Directorio de Usuarios</h1>
+    <div id="contenedor">Cargando...</div>
+
+    <script>
+        fetch('Ejemplo02-FetchThenVectorial-datos.json')
+            .then(respuesta => {
+                if (!respuesta.ok) {
+                    throw new Error("Servidor prendido sin encontrar archivo");
+                }
+                return respuesta.json();
+            })
+            .then(datos => {
+                let contenido = "";
+                
+                datos.forEach(item => {
+                    contenido += `
+                        <div class="tarjeta">
+                            <b>${item.nombre}</b>
+                            <div class="info">
+                                Edad: ${item.edad} años<br>
+                                Web: <a class="web-link" href="#">${item.web}</a>
+                            </div>
+                        </div>`;
+                });
+
+                document.getElementById('contenedor').innerHTML = contenido;
+            })
+            .catch(error => {
+                const caja = document.getElementById('contenedor');
+
+                if (error.message.includes("prendido")) {
+                    caja.innerHTML = `<b style="color:orange; grid-column: 1/-1; text-align: center;">${error.message}</b>`;
+                } else {
+                    caja.innerHTML = `<b style="color:red; grid-column: 1/-1; text-align: center;">Servidor apagado</b>`;
+                }
+            });
+    </script>
+
+</body>
+</html>
