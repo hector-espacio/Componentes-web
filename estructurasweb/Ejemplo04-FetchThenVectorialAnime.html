@@ -2,15 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Animes - Estilo Plano</title>
+    <title>Catálogo de Anime</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         :root {
             --bg-color: #ffffff;
-            --border-color: #d1d8e0;
-            --accent-color: #4b7bec;
+            --border-color: #2d3436;
+            --accent-color: #0984e3;
             --text-main: #2d3436;
-            --text-sub: #778ca3;
             --tag-bg: #f1f2f6;
         }
 
@@ -19,67 +18,73 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
         h1 {
             text-align: center;
-            border-bottom: 2px solid var(--text-main);
-            display: table;
-            margin: 0 auto 40px auto;
-            padding-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
         }
 
         #contenedor {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .card {
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover; /* Recorta la imagen para que todas midan lo mismo sin deformarse */
+            border-bottom: 2px solid var(--border-color);
+            display: block;
+        }
+
+        .card-info {
             padding: 15px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .card-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: bold;
-            text-transform: uppercase;
+            margin: 0;
         }
 
         .card-genre {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            background-color: var(--tag-bg);
-            padding: 5px 10px;
+            font-size: 0.8rem;
+            color: #fff;
+            background-color: var(--border-color);
+            padding: 3px 8px;
             width: fit-content;
-            font-weight: bold;
+            text-transform: uppercase;
         }
 
-        .card-img-path {
-            font-size: 0.75rem;
-            color: var(--text-sub);
-            border-top: 1px solid var(--tag-bg);
-            padding-top: 10px;
-        }
-
-        /* Mensajes de estado */
         .status-msg {
             text-align: center;
-            padding: 15px;
+            padding: 50px;
             border: 2px dashed var(--border-color);
+            grid-column: 1 / -1;
         }
     </style>
 </head>
 <body>
 
-    <h1>CATÁLOGO ANIME</h1>
-    <div id="contenedor" class="status-msg">Cargando datos...</div>
+    <h1>Catálogo Anime</h1>
+    <div id="contenedor" class="status-msg">Cargando galería...</div>
 
     <script>
         fetch('Ejemplo04-ListaAnime.json')
@@ -93,21 +98,24 @@
                 let contenido = "";
 
                 datos.forEach(item => {
+                    // Se asume que las imágenes están en una carpeta llamada 'img' 
+                    // y tienen extensión .jpg (ajusta según tu caso)
                     contenido += `
                         <div class="card">
-                            <div class="card-title">${item.anime}</div>
-                            <div class="card-genre">${item.genero}</div>
-                            <div class="card-img-path">Referencia: ${item.imagen}</div>
+                            <img src="img/${item.imagen}.jpg" alt="${item.anime}">
+                            <div class="card-info">
+                                <p class="card-title">${item.anime}</p>
+                                <span class="card-genre">${item.genero}</span>
+                            </div>
                         </div>`;
                 });
 
-                document.getElementById('contenedor').classList.remove('status-msg');
-                document.getElementById('contenedor').innerHTML = contenido;
+                const caja = document.getElementById('contenedor');
+                caja.classList.remove('status-msg');
+                caja.innerHTML = contenido;
             })
             .catch(error => {
                 const caja = document.getElementById('contenedor');
-                caja.style.borderColor = "red";
-                
                 if (error.message.includes("prendido")) {
                     caja.innerHTML = `<b style="color:orange;">${error.message}</b>`;
                 } else {
