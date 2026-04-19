@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React con Fetch (CDN)</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+contenido introductorio
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            const [posts, setPosts] = useState([]);
+            const [error, setError] = useState(null);
+
+            useEffect(() => {
+                fetch('reactdatos.json')
+                    .then(response => {
+                        if (!response.ok) throw new Error("Error en la petición");
+                        return response.json();
+                    })
+                    .then(data => setPosts(data))
+                    .catch(err => setError(err.message));
+            }, []);
+
+            if (error) return <div>Error: {error}</div>;
+            if (posts.length === 0) return <div>Cargando posts...</div>;
+
+            return (
+                <>
+                    <h1>Lista de Usuarios</h1>
+        <ul>
+            {posts.map(post => (
+                <li key={post.id}>
+                    {/* Cambiamos title por nombre y body por edad/web */}
+                    <h3>{post.nombre}</h3> 
+                    <p>Edad: {post.edad} - Web: {post.web}</p>
+                </li>
+            ))}
+        </ul>
+                </>
+            );
+        }
+
+        // Renderizar la aplicación en el div #root
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</body>
+</html>
