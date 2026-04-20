@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Práctico - Directorio</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // Tu lógica de mensajes original
+        const mensajitoError = ["Servidor encendido, pero falta el archivo", "Servidor apagado o error de red"];
+
+        function TarjetaContacto(props) {
+            return (
+                <div>
+                    <img src={props.persona.foto} alt={props.persona.nombre} />
+                    <h3>{props.persona.nombre}</h3>
+                    <p>{props.persona.puesto}</p>
+                    <p>{props.persona.email}</p>
+                </div>
+            );
+        }
+
+        function App() {
+            // Estados solicitados por el ejercicio
+            const [nosotros, setNosotros] = useState([]);
+            const [cargando, setCargando] = useState(true);
+            const [error, setError] = useState(null);
+
+            useEffect(() => {
+                // Fetch al archivo solicitado: nosotros.json
+                fetch('nosotros.json')
+                    .then(res => {
+                        if (res.ok) {
+                            return res.json();
+                        }
+                        // Tu lógica de error 1: Archivo no encontrado
+                        throw new Error("archivo no encontrado en el servidor");
+                    })
+                    .then(data => {
+                        setNosotros(data);
+                        setCargando(false);
+                    })
+                    .catch(err => {
+                        // Aplicando tu lógica de mensajes exacta
+                        if (err.message === "archivo no encontrado en el servidor") {
+                            setError(mensajitoError[0]);
+                        } else {
+                            setError(mensajitoError[1]);
+                        }
+                        setCargando(false);
+                    });
+            }, []);
+
+            // Renderizado condicional con IF normales
+            if (error !== null) {
+                return (
+                    <h1>
+                        <u>Error: {error}</u>
+                    </h1>
+                );
+            }
+
+            if (cargando === true) {
+                return <div>Cargando equipo...</div>;
+            }
+
+            return (
+                <div>
+                    <h1>Directorio de Personas</h1>
+                    <div>
+                        {nosotros.map(persona => {
+                            return (
+                                <TarjetaContacto 
+                                    key={persona.id} 
+                                    persona={persona} 
+                                />
+                            );
+                        })}
+                    </div>
+                    <hr />
+                    <footer>
+                        <p>Contacto del pie de página</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
