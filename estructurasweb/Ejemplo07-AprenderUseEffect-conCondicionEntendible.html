@@ -1,0 +1,61 @@
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <div id="root"></div>
+
+
+<script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const CONFIG_ERRORES = {
+        "ARCHIVO_NO_EXISTE": { color: "orange", msg: "Servidor encendido, pero falta el archivo" },
+        "CONEXION_RECHAZADA": { color: "red", msg: "Servidor apagado o error de red ok" }
+    };
+
+    function App() {
+        const [posts, setPosts] = useState([]);
+        const [error, setError] = useState(null);
+
+        useEffect(() => {
+            fetch('http://localhost:8000/noreactdatos.json')
+                .then(res => {
+                    if (res.ok) return res.json();
+                    // Mensaje descriptivo y claro
+                    throw new Error("archivo no encontrado en el servidor");
+                })
+                .then(data => setPosts(data))
+                .catch(err => {
+                    // Identificamos el error por el mensaje descriptivo
+                    if (err.message === "archivo no encontrado en el servidor") {
+                        setError("ARCHIVO_NO_EXISTE");
+                    } else {
+                        setError("CONEXION_RECHAZADA");
+                    }
+                });
+        }, []);
+
+        // JSX puro y directo
+        if (error !== null){
+            return (
+                <div style={{ color: CONFIG_ERRORES[error].color, fontWeight: 'bold' }}>
+                    Error: {CONFIG_ERRORES[error].msg}, esto es una locura
+                </div>
+            );
+        }
+
+        if (posts.length === 0) return <div>Intentando conectar...</div>;
+
+        return (
+            <>
+                <h1>Lista de Usuarios</h1>
+                <ul>
+                    {posts.map(p => <li key={p.id}>{p.nombre}</li>)}
+                </ul>
+            </>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+</script>
