@@ -1,0 +1,27 @@
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+
+function App(){
+const [texto,setTexto]=React.useState("hola");
+
+function cambiar(){
+if (texto == "hola") { setTexto("adios") }
+else { setTexto("hola") }
+}
+
+return(
+<>
+aqui mando yo<br />
+<h1>{texto}</h1>
+<button onClick={cambiar}>Cambiar</button>
+</>
+);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
