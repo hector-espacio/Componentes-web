@@ -32,7 +32,7 @@
             const [error, setError] = useState(null);
 
             useEffect(() => {
-                fetch('./data/nosotros.json')
+                fetch('nosotros.json')
                     .then(res => {
                         if (!res.ok) throw new Error("No se pudo cargar el JSON");
                         return res.json();
