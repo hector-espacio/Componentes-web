@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "nombre": "Silvia",
+        "puesto": "Product Owner",
+        "email": "silvia@empresa.com",
+        "foto": "https://randomuser.me/api/portraits/women/1.jpg"
+    },
+    {
+        "id": 2,
+        "nombre": "Marcos",
+        "puesto": "Tech Lead",
+        "email": "marcos@empresa.com",
+        "foto": "https://randomuser.me/api/portraits/men/2.jpg"
+    },
+    {
+        "id": 3,
+        "nombre": "Agustina",
+        "puesto": "UX Designer",
+        "email": "agustina@empresa.com",
+        "foto": "https://randomuser.me/api/portraits/women/3.jpg"
+    },
+    {
+        "id": 4,
+        "nombre": "Roberto",
+        "puesto": "Backend Developer",
+        "email": "roberto@empresa.com",
+        "foto": "https://randomuser.me/api/portraits/men/4.jpg"
+    }
+]
