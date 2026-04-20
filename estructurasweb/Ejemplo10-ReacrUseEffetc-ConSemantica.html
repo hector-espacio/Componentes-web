@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio Práctico - Estructura Final</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // 1. Componente que solo recibe datos y los muestra
+        function TarjetaContacto({ persona }) {
+            return (
+                <div>
+                    <img src={persona.foto} alt={persona.nombre} />
+                    <h3>{persona.nombre}</h3>
+                    <p>{persona.puesto}</p>
+                    <p>{persona.email}</p>
+                </div>
+            );
+        }
+
+        // 2. Componente DIRECTORIO: Hace el FETCH y el MAPEO internamente
+        function Directorio() {
+            const [nosotros, setNosotros] = useState([]);
+            const [cargando, setCargando] = useState(true);
+            const [error, setError] = useState(null);
+
+            useEffect(() => {
+                fetch('./data/nosotros.json')
+                    .then(res => {
+                        if (!res.ok) throw new Error("No se pudo cargar el JSON");
+                        return res.json();
+                    })
+                    .then(data => {
+                        setNosotros(data);
+                        setCargando(false);
+                    })
+                    .catch(err => {
+                        setError(err.message);
+                        setCargando(false);
+                    });
+            }, []);
+
+            // Lógica de visualización interna
+            if (error) return <h1>Error: {error}</h1>;
+            if (cargando) return <div>Cargando equipo...</div>;
+
+            // Él mismo procesa y devuelve los elementos mapeados
+            return (
+                <section>
+                    {nosotros.map(persona => (
+                        <TarjetaContacto key={persona.id} persona={persona} />
+                    ))}
+                </section>
+            );
+        }
+
+        // 3. Componente APP: Solo organiza las secciones de la página
+        function App() {
+            return (
+                <div>
+                    <header>
+                        <h1>Nuestra Empresa</h1>
+                    </header>
+
+                    <main>
+                        {/* Se llama al componente como una etiqueta cerrada */}
+                        {/* Directorio ya sabe qué hacer, no necesita instrucciones de App */}
+                        <Directorio />
+                    </main>
+
+                    <footer>
+                        <p>Copyright 2026</p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
