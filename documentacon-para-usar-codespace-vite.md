@@ -12,13 +12,13 @@ Para que Vite funcione, necesitás la carpeta llamada `node_modules`, pero esa c
 * **El problema**: Esa librería `balanced-match` que está dando el error de la **X** está metida ahí dentro.
 * **Regla de oro**: Nunca debés subir `node_modules` a GitHub.
 
-### 2. Dónde debe ir tu código (`ejemplo01-SoloApp`, etc.)
-```Tus carpetas de proyectos como `ejemplo01-SoloApp` y `ejemplo02-UnSupComponente` están bien creadas, pero deberían estar en la raíz de tu proyecto, **fuera** de cualquier carpeta de librerías.
-```
+### 2. Dónde debe ir tu código (ejemplo01-SoloApp, etc.)
+Tus carpetas de proyectos como ejemplo01-SoloApp y ejemplo02-UnSupComponente están bien creadas, pero deberían estar en la raíz de tu proyecto, **fuera** de cualquier carpeta de librerías.
+
 
 
 ### 3. ¿Cómo arreglar el error de la X ahora mismo?
-La **X roja** persiste porque GitHub Pages intenta leer el archivo `README.md` de la carpeta `node_modules` y no entiende las llaves `{{a}` que aparecen en la línea 50.
+```La **X roja** persiste porque GitHub Pages intenta leer el archivo: README.md, de la carpeta: node_modules, y no entiende las llaves `{{a}` que aparecen en la línea 50.```
 
 **Hacé esto para que Vite funcione y la X se vaya:**
 1.  **Borrá la carpeta `node_modules`** de tu repositorio en GitHub.
