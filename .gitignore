@@ -1,0 +1,3 @@
+# Ignora todas las carpetas node_modules del repositorio
+node_modules/
+**/node_modules/
