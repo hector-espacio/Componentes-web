@@ -30,7 +30,5 @@ se debe poner asi el archivo vite.condig.js :
 ![](ArchivosHosting/distVite.jpg)
 
 ---
-liegonde la configuracion contruir el dist en codespace, estabdo 
-
-exactamebte en la carpeta del proyecto
+luego la configuracion contruir el dist en codespace, estando exactamente en la carpeta del proyecto
 ![](armarvitedist.jpg)
