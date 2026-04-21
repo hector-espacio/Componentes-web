@@ -1,3 +1,19 @@
 {
-  "name": "Default"
+  "name": "Solo React",
+  "customizations": {
+    "codespaces": {
+      "repositories": {
+        "hector-espacio/Componentes-web": {
+          "sparseCheckout": {
+            "enabled": true,
+            "folders": [
+              "Mis proyectos en servidor react",
+              "Mis proyectos en servidor react sin vite",
+              "Practicas Modularizacion"
+            ]
+          }
+        }
+      }
+    }
+  }
 }
