@@ -7,11 +7,14 @@
                     "sparseCheckout": {
                         "enabled": true,
                         "folders": [
-                            "Mis proyectos en servidor react","Mis proyectos en servidor react sin vite", "Practicas Modularizacion"
+                            "Mis proyectos en servidor react",
+                            "Mis proyectos en servidor react sin vite",
+                            "Practicas Modularizacion"
                         ]
                     }
                 }
             }
         }
-    }
+    },
+    "postCreateCommand": "git sparse-checkout set 'Mis proyectos en servidor react' 'Mis proyectos en servidor react sin vite' 'Practicas Modularizacion' && git clean -fd"
 }
