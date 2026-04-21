@@ -19,7 +19,9 @@ Tus carpetas de proyectos como ejemplo01-SoloApp y ejemplo02-UnSupComponente est
 
 ### 3. ¿Cómo arreglar el error de la X ahora mismo?
 
-AQUI VA IMAGEN
+![](ArchivosHosting/errorCriticoLlaveEnGithubPages.png)
+
+(tube que insertarlo como imagen porque las llaves mal cerradas, en cualquier tipo de archivo de texto, md html jsx github lo toma como error ya que estoy en el entorno activado de github pages y las llaves las analiza github como sentencia liguid)
 
 **Hacé esto para que Vite funcione y la X se vaya:**
 1.  **Borrá la carpeta `node_modules`** de tu repositorio en GitHub.
