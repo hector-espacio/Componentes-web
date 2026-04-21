@@ -1,4 +1,4 @@
-import Saludo from './components/Saludo'; // 1. Importamos el subcomponente
+import Saludo from './componentes/Saludo'; // 1. Importamos el subcomponente
 
 function App() {
   return (
