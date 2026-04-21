@@ -13,8 +13,8 @@ Para que Vite funcione, necesitás la carpeta llamada `node_modules`, pero esa c
 * **Regla de oro**: Nunca debés subir `node_modules` a GitHub.
 
 ### 2. Dónde debe ir tu código (`ejemplo01-SoloApp`, etc.)
-Tus carpetas de proyectos como `ejemplo01-SoloApp` y `ejemplo02-UnSupComponente` están bien creadas, pero deberían estar en la raíz de tu proyecto, **fuera** de cualquier carpeta de librerías.
-
+```Tus carpetas de proyectos como `ejemplo01-SoloApp` y `ejemplo02-UnSupComponente` están bien creadas, pero deberían estar en la raíz de tu proyecto, **fuera** de cualquier carpeta de librerías.
+```
 
 
 ### 3. ¿Cómo arreglar el error de la X ahora mismo?
