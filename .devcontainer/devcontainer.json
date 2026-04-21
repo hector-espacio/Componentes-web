@@ -1,5 +1,5 @@
 {
-  "name": "Entorno Selectivo",
+  "name": "Solo React",
   "customizations": {
     "codespaces": {
       "repositories": {
@@ -15,6 +15,5 @@
         }
       }
     }
-  },
-  "postCreateCommand": "git sparse-checkout init --cone && git sparse-checkout set 'Mis proyectos en servidor react' 'Mis proyectos en servidor react sin vite' 'Practicas Modularizacion'"
+  }
 }
