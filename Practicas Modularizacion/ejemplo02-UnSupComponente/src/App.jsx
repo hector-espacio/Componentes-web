@@ -1,13 +1,16 @@
+import Saludo from './components/Saludo'; // 1. Importamos el subcomponente
+
 function App() {
   return (
-    <>
-    <h1>Hola mundo</h1>
-    <p>esto es contenido</p>
-    <p>esto es otro contenido 2</p>
-    </>
+    <div style={{ textAlign: 'center' }}>
+      <h1>Ejercicio 2: Modularización</h1>
+      
+      {/* 2. Usamos el subcomponente como si fuera una etiqueta HTML */}
+      <Saludo />
+      <Saludo /> 
+      
+    </div>
   );
 }
 
-// Se usa export default para que este archivo entregue la función App.
-// Sin esto, el archivo main.jsx no podría "ver" el h1 que creamos.
 export default App;
