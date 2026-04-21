@@ -21,3 +21,5 @@ http://localhost:9000/nombre.html
 
 ![](desactivarcokies.png)
 ---
+PARA USAR LA MAQUINA VIRTUAL, TENER LOS CAMBIOS DE LA NUVE ALA MAQUINA VIRTUAL
+git pull origin inicial
