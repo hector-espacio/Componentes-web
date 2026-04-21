@@ -18,7 +18,8 @@ Tus carpetas de proyectos como ejemplo01-SoloApp y ejemplo02-UnSupComponente est
 
 
 ### 3. ¿Cómo arreglar el error de la X ahora mismo?
-```La **X roja** persiste porque GitHub Pages intenta leer el archivo: README.md, de la carpeta: node_modules, y no entiende las llaves `{{a}` que aparecen en la línea 50.```
+
+AQUI VA IMAGEN
 
 **Hacé esto para que Vite funcione y la X se vaya:**
 1.  **Borrá la carpeta `node_modules`** de tu repositorio en GitHub.
