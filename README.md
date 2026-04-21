@@ -23,7 +23,6 @@ http://localhost:9000/nombre.html
 ---
 PARA USAR LA MAQUINA VIRTUAL, TENER LOS CAMBIOS DE LA NUVE ALA MAQUINA VIRTUAL
 git pull origin inicial
-
 ---
 para hacer dist alos archivos vite
 se debe poner asi el archivo vite.condig.js :
