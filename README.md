@@ -31,4 +31,4 @@ se debe poner asi el archivo vite.condig.js :
 
 ---
 luego la configuracion contruir el dist en codespace, estando exactamente en la carpeta del proyecto
-![](armarvitedist.jpg)
+![](ArchivodHosting/armarvitedist.jpg)
