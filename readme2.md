@@ -1,1 +1,1 @@
-![](armarvitedist.jpg)
+![](ArchivosHosting/armarvitedist.jpg)
