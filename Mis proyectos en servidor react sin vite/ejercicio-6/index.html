@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio React - Estado de Carga</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        // --- COMPONENTE 2: ProductForm (Presentacional) ---
+        // Recibe 'loading' como prop (Paso 1 y 4 de las capturas)
+        const ProductForm = ({ loading, onSubmit }) => {
+            return (
+                <form onSubmit={onSubmit}>
+                    <h3>Subir Nuevo Producto</h3>
+                    <input type="text" placeholder="Nombre del producto" required />
+                    <br /><br />
+                    
+                    {/* Paso 2: Modificar el botón de envío con operador ternario y disabled */}
+                    <button type="submit" disabled={loading}>
+                        {loading ? "Cargando..." : "Enviar Producto"}
+                    </button>
+                </form>
+            );
+        };
+
+        // --- COMPONENTE 1: NewProductContainer (Lógica) ---
+        const NewProductContainer = () => {
+            // Paso 1: Crear el estado loading inicializado en false
+            const [loading, setLoading] = useState(false);
+
+            const handleFormSubmit = async (e) => {
+                e.preventDefault();
+                
+                // Paso 2: Activar el estado de carga
+                setLoading(true);
+
+                try {
+                    console.log("Subiendo imagen y datos...");
+                    // Simulamos una petición al servidor (2 segundos)
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    alert("¡Producto subido con éxito!");
+                } catch (error) {
+                    console.error("Error al subir:", error);
+                    alert("Hubo un error");
+                } finally {
+                    // Paso 3: Desactivar el estado de carga (siempre se ejecuta)
+                    setLoading(false);
+                }
+            };
+
+            return (
+                <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+                    <h1>eCommerce App</h1>
+                    {/* Paso 4: Pasar el estado como prop al hijo */}
+                    <ProductForm loading={loading} onSubmit={handleFormSubmit} />
+                </div>
+            );
+        };
+
+        // Renderizar la aplicación
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<NewProductContainer />);
+    </script>
+</body>
+</html>
