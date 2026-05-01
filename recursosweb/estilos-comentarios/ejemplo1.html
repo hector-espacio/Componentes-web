@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios Simples</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espacio entre los dos divs */
+        }
+
+        /* Estilo base para ambos */
+        .comentario {
+            padding: 20px;
+            border-radius: 15px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            color: #334155;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* USUARIO 1: Tono Lavanda/Azul suave */
+        .usuario-1 {
+            background-color: #f1f5ff;
+            border: 1px solid #e0e7ff;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        /* USUARIO 2: Tono Menta/Verde suave */
+        .usuario-2 {
+            background-color: #f0fdf4;
+            border: 1px solid #dcfce7;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="comentario usuario-1">
+            Este es el formato para el primer usuario. Es un tono azulado muy claro, diseñado para ser sutil y facilitar la lectura prolongada sin cansar la vista.
+        </div>
+
+        <div class="comentario usuario-2">
+            Este es el formato para el segundo usuario. Utiliza un tono verde menta suave para contrastar con el anterior, manteniendo una estética limpia y profesional.
+        </div>
+
+    </div>
+
+</body>
+</html>
