@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejemplo React Todo en Uno</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function App() {
+            const [texto, setTexto] = React.useState("");
+
+            return (
+                <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+                    <h3>Escribe en el input:</h3>
+                    
+                    {/* Función anónima tradicional: e recibe el valor aquí mismo */}
+                    <input 
+                        type="text" 
+                        value={texto}
+                        onChange={function(e) {
+                            console.log("React le dio valor a e:", e.target.value);
+                            setTexto(e.target.value);
+                        }}
+                    />
+
+                    <p>Resultado en tiempo real: <strong>{texto}</strong></p>
+                </div>
+            );
+        }
+
+        // Renderizar la app en el div 'root'
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
