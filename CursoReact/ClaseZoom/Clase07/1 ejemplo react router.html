@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>React Router CDN Simple</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script src="https://unpkg.com/@remix-run/router@1.16.0/dist/router.umd.js"></script>
+    <script src="https://unpkg.com/react-router@6.23.0/dist/react-router.umd.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.23.0/dist/react-router-dom.umd.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Extraemos los componentes que necesitamos de la librería global
+        const { HashRouter, Routes, Route, Link } = ReactRouterDOM;
+
+        // Componentes de "Páginas"
+        const Inicio = () => <h2>🏠 Estás en el Inicio</h2>;
+        const Contacto = () => <h2>📧 Estás en Contacto</h2>;
+
+        function App() {
+            return (
+                // Usamos HashRouter en CDN porque no requiere configuración de servidor
+                <HashRouter>
+                    <nav>
+                        <Link to="/">Ir a Inicio</Link> | 
+                        <Link to="/contacto">Ir a Contacto</Link>
+                    </nav>
+
+                    <hr />
+
+                    {/* Aquí es donde React decide qué mostrar según la URL */}
+                    <Routes>
+                        <Route path="/" element={<Inicio />} />
+                        <Route path="/contacto" element={<Contacto />} />
+                    </Routes>
+                </HashRouter>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
