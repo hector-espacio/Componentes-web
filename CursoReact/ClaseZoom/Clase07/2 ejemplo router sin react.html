@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <nav>
+        <a href="/" class="nav-link">Inicio</a> | 
+        <a href="/contacto" class="nav-link">Contacto</a>
+    </nav>
+
+    <div id="content">
+        </div>
+
+    <script>
+        const contentDiv = document.getElementById('content');
+
+        // 1. Definimos nuestros "Componentes" (simples strings de HTML)
+        const routes = {
+            "/": "<h1>🏠 Estás en el Inicio</h1><p>Hecho con JS puro.</p>",
+            "/contacto": "<h1>📧 Página de Contacto</h1><p>Escríbenos pronto.</p>"
+        };
+
+        // 2. Función que "Dibuja" según la URL
+        function router() {
+            const path = window.location.pathname;
+            contentDiv.innerHTML = routes[path] || "<h1>404 Not Found</h1>";
+        }
+
+        // 3. Función para navegar sin recargar
+        function navegar(e) {
+            if (e.target.matches('.nav-link')) {
+                e.preventDefault(); // <-- EVITA QUE LA PÁGINA SE RECARGUE
+                const url = e.target.getAttribute('href');
+                
+                // Cambia la URL en la barra de direcciones
+                window.history.pushState({}, "", url);
+                
+                // Ejecuta el router para dibujar el nuevo contenido
+                router();
+            }
+        }
+
+        // 4. Escuchar clics y botones de atrás/adelante del navegador
+        window.addEventListener("click", navegar);
+        window.onpopstate = router; // Para cuando el usuario usa las flechas del navegador
+
+        // Carga inicial
+        router();
+    </script>
+</body>
+</html>
