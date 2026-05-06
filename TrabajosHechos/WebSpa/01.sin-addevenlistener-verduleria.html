@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verdulería "El Huerto Fresco"</title>
+  <style>
+    /* Estilo Sólido y Orgánico */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f4fbf4; /* Verde muy sutil */
+      color: #2d3436;
+    }
+
+    nav {
+      background-color: #27ae60; /* Verde principal */
+      padding: 15px 0;
+      text-align: center;
+      border-bottom: 4px solid #219150;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    #contenido {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h1 { color: #27ae60; text-align: center; }
+    h2 { border-bottom: 2px solid #e1e1e1; padding-bottom: 10px; color: #2c3e50; }
+
+    /* Estructura de Cuadrícula para Productos */
+    .grid-productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .producto {
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    .producto strong {
+      display: block;
+      color: #27ae60;
+      font-size: 1.2rem;
+      margin-bottom: 5px;
+    }
+
+    .precio {
+      font-weight: bold;
+      color: #e67e22;
+      display: block;
+    }
+
+    .info-box {
+      background-color: #e8f5e9;
+      padding: 20px;
+      border-left: 5px solid #27ae60;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #7f8c8d;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#/">Nuestra Tienda</a>
+  <a href="#/Animes-favoritos">Catálogo de Temporada</a>
+</nav>
+
+<div id="contenido"></div>
+
+<footer>
+  &copy; 2026 Verdulería El Huerto Fresco - Calidad del campo a su hogar.
+</footer>
+
+<script>
+const rutas = {
+  "#/": `
+    <h1>Bienvenidos a El Huerto Fresco</h1>
+    <div class="info-box">
+      <p>Ofrecemos las mejores frutas y verduras seleccionadas directamente de productores locales. Frescura garantizada cada mañana.</p>
+    </div>
+    <h2>¿Por qué comprar con nosotros?</h2>
+    <ul>
+      <li><strong>Cosecha del día:</strong> Productos recolectados en menos de 24 horas.</li>
+      <li><strong>Sin intermediarios:</strong> Precios justos para usted y para el agricultor.</li>
+      <li><strong>Entrega a domicilio:</strong> Llevamos su pedido hasta la puerta de su casa.</li>
+    </ul>
+  `,
+  "#/Animes-favoritos": `
+    <h2>Nuestros Productos Disponibles</h2>
+    <p>Haga su lista y haga su pedido hoy mismo:</p>
+    <div class="grid-productos">
+      <div class="producto">
+        <strong>Tomate Perita</strong>
+        <span class="precio">$1.20 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Lechuga Fresca</strong>
+        <span class="precio">$0.80 / ud</span>
+      </div>
+      <div class="producto">
+        <strong>Manzana Roja</strong>
+        <span class="precio">$2.50 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Zanahoria</strong>
+        <span class="precio">$0.90 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Bananas</strong>
+        <span class="precio">$1.50 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Papas (Patatas)</strong>
+        <span class="precio">$0.70 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Cebolla Blanca</strong>
+        <span class="precio">$1.10 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Palta (Aguacate)</strong>
+        <span class="precio">$4.00 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Naranjas de Jugo</strong>
+        <span class="precio">$1.80 / kg</span>
+      </div>
+      <div class="producto">
+        <strong>Espinaca</strong>
+        <span class="precio">$1.00 / atado</span>
+      </div>
+    </div>
+  `,
+  "404": `<h1>404 - Error</h1><p>La sección que busca no existe en nuestro huerto.</p>`
+};
+
+function manejarUrl() {
+  let path = window.location.hash;
+  if (path === "") { path = "#/"; }
+
+  let html;
+  if (path in rutas) {
+    html = rutas[path];
+  } else {
+    html = rutas["404"];
+  }
+
+  document.getElementById("contenido").innerHTML = html;
+}
+
+// ASIGNACIÓN DIRECTA
+window.onload = manejarUrl;
+window.onhashchange = manejarUrl;
+
+</script>
+
+</body>
+</html>
