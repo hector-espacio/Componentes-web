@@ -13,24 +13,49 @@
       color: #2d3436;
     }
 
-    nav {
-      background-color: #27ae60; /* Verde principal */
-      padding: 15px 0;
-      text-align: center;
-      border-bottom: 4px solid #219150;
-    }
+/* Modifica estas partes en tu CSS */
+nav {
+  background-color: #27ae60;
+  padding: 10px;
+  display: flex; /* Alinea los elementos en fila */
+  justify-content: center; /* Los centra */
+  gap: 10px; /* Espacio real entre las cajas */
+  border-bottom: 4px solid #219150;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 20px;
-      font-weight: bold;
-      font-size: 1.1rem;
-    }
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  
+  /* Esto crea la "caja" */
+  background-color: #2ecc71;
+  padding: 12px 15px;
+  border-radius: 8px;
+  flex: 1; /* Hace que ambas cajas midan lo mismo */
+  max-width: 200px; /* Evita que se estiren demasiado en PC */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,0.2);
+}
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+nav a:hover {
+  background-color: #219150;
+}
+
+/* Ajuste para pantallas muy pequeñas (celulares) */
+@media (max-width: 400px) {
+  nav a {
+    font-size: 0.8rem;
+    padding: 10px 5px;
+  }
+}
+
+
+
 
     #contenido {
       max-width: 1000px;
