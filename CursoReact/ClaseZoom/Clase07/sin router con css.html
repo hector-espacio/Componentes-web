@@ -1,0 +1,115 @@
+<style>
+body {
+  font-family: sans-serif;
+  line-height: 1.4;
+  margin: 0;
+  background-color: white;
+}
+
+nav {
+  padding: 1rem;
+}
+nav a {font-weight:bold; font-size:1.2rem}
+
+li,ul{
+  padding: 0;
+  margin: 0 10px ; 
+}
+main{background:white; padding: 1rem}
+header{background:lightblue}
+footer {background:lightblue; padding: 1rem}
+
+
+article {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+
+</style>
+<body>
+  <header>
+<nav>
+  <a href="#/">Inicio</a>
+  <a href="#/Integrantes">Integrantes</a>
+</nav>
+  </header>
+  <main>
+<div id="contenido"></div>
+  </main>
+  <footer>
+    Web registrada por Hector
+  </footer>
+  
+<script>
+const rutas = {
+  "#/": `
+   <section>
+  <h1>Desarrollo de Software</h1>
+  <p>Creación de sistemas web y herramientas de automatización para optimizar procesos operativos.</p>
+</section>
+
+<section>
+  <h2>Servicios</h2>
+  <ul>
+    <li>Diseño de interfaces funcionales.</li>
+    <li>Desarrollo de bases de datos.</li>
+    <li>Optimización de rendimiento.</li>
+  </ul>
+</section>
+
+  `,
+  "#/Integrantes": `
+<section>
+  <h1>Equipo Técnico</h1>
+ <br> 
+  <article>
+    <h2>Alejandro Méndez</h2>
+    <p>Arquitectura de sistemas y seguridad informática.</p>
+  </article>
+
+  <article>
+    <h2>Lucía Herrera</h2>
+    <p>Desarrollo Full-Stack y gestión de APIs.</p>
+  </article>
+
+  <article>
+    <h2>Martín Rossi</h2>
+    <p>Control de calidad (QA) y experiencia de usuario.</p>
+  </article>
+</section>
+
+  `,
+  "404": "<h1>404 - Pagina web no encontrada</h1>"
+};
+
+function manejarUrl() {
+  let path = window.location.hash;
+  if (path === "") { path = "#/"; }
+
+  let html;
+  if (path in rutas) {
+    html = rutas[path];
+  } else {
+    html = rutas["404"];
+  }
+
+  document.getElementById("contenido").innerHTML = html;
+}
+
+// ASIGNACIÓN DIRECTA (Sin addEventListener)
+window.onload = manejarUrl;
+window.onhashchange = manejarUrl;
+
+</script>
+  
+</body>
