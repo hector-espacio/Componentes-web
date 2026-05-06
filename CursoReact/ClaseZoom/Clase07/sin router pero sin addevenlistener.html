@@ -1,0 +1,55 @@
+<nav>
+  <a href="#/">Inicio</a>
+  <a href="#/Animes-favoritos">Lista de animes</a>
+</nav>
+
+<div id="contenido"></div>
+
+<script>
+const rutas = {
+  "#/": `
+    <h1>Bienvenidos a mi web</h1>
+    <h2>Animes que estoy viendo:</h2>
+    <ol>
+      <li>tensei shitara slime datta ken 4ta temporada</li>
+      <li>Tongari Boushi no Atelier</li>
+      <li>Tsue to Tsurugi no Wistoria 2da temporada</li>
+    </ol>
+  `,
+  "#/Animes-favoritos": `
+    <h2>Mis animes favoritos:</h2>
+    <ol>
+      <li>death note</li>
+      <li>golden time</li>
+      <li>nodame cantabile</li>
+      <li>toradora</li>
+      <li>shigatsu wa kimi no uso</li>
+      <li>code geass</li>
+      <li>clannad</li>
+      <li>Air tv</li>
+      <li>rozen maiden</li>
+      <li>kuroko no basuke</li>
+    </ol>
+  `,
+  "404": "<h1>404 - Pagina web no encontrada</h1>"
+};
+
+function manejarUrl() {
+  let path = window.location.hash;
+  if (path === "") { path = "#/"; }
+
+  let html;
+  if (path in rutas) {
+    html = rutas[path];
+  } else {
+    html = rutas["404"];
+  }
+
+  document.getElementById("contenido").innerHTML = html;
+}
+
+// ASIGNACIÓN DIRECTA (Sin addEventListener)
+window.onload = manejarUrl;
+window.onhashchange = manejarUrl;
+
+</script>
