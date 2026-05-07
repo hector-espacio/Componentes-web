@@ -23,5 +23,7 @@ La vieja escuela se quedó con esa costumbre, y por eso la mayoría de tutoriale
 
 
 **En resumen:**
+
+
 Si usas <!DOCTYPE html> en tu proyecto de React con Vite, **no va a explotar nada**. Vite lo pone en minúsculas por una cuestión de estilo minimalista, pero el navegador lo interpretará exactamente igual.
 ¿Hay alguna otra parte de la estructura de archivos de Vite que te haya llamado la atención?
