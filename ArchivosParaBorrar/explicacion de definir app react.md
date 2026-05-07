@@ -10,6 +10,8 @@ export default App;
 
 ```
 ### ¿Por qué NO es necesario import React aquí?
+
+
 Antiguamente (antes de la versión 17 de React), cada vez que escribías JSX (como <h1>), el compilador lo transformaba internamente en una función llamada React.createElement(). Por eso, aunque no usaras la palabra "React" directamente, el archivo la necesitaba para no romperse.
 Desde hace unos años, existe el **"Nuevo Transformador de JSX"**. Ahora, herramientas como Vite o Create React App hacen ese trabajo por detrás sin necesidad de que tú importes React manualmente en cada componente. Solo lo importas si necesitas usar **Hooks** (como useState).
 ### ¿Por qué se importa y exporta entonces?
