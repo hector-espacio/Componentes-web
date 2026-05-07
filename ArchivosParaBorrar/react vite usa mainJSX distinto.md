@@ -1,3 +1,4 @@
+main.jsx: asi es usado sin vite
 ```
 import React from 'react'
 import ReactDOM from 'react-dom/client'
