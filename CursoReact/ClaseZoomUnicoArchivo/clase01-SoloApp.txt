@@ -14,3 +14,34 @@ index.html:
   </body>
 </html>
 ‐--‐----------------------------------‐--‐----------------------------------
+src/main.jsx
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+‐--‐----------------------------------‐--‐----------------------------------
+src/App.jsx
+
+import { useState } from 'react'
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h1>Hola Mundo con Vite + React</h1>
+      <p>Has hecho clic {count} veces</p>
+      <button onClick={() => setCount(count + 1)}>
+        Aumentar contador
+      </button>
+    </div>
+  )
+}
+
+export default App
