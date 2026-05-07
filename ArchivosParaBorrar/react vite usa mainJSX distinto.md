@@ -13,6 +13,24 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
 ```
 
+
+main.jsx asi es usando vite
+
+```
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+```
+
+
 ¡Buenas preguntas! Estás hilando muy fino con cómo funcionan las tripas de React. Vamos a aclarar estas dudas porque la diferencia entre usar un **CDN** (en el navegador) y usar **Vite** (con módulos de Node) es lo que está causando la confusión.
 Aquí tienes las respuestas punto por punto:
 ### 1. ¿Es necesario el StrictMode?
