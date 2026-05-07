@@ -1,5 +1,7 @@
 Tienes toda la razón en dudarlo, y de hecho, tu instinto es muy agudo: **en las versiones modernas de React, esa línea ya no es estrictamente necesaria.**
 Aquí te explico el porqué de la confusión y cómo quedaría tu código con el "mínimo" absoluto:
+
+
 ### App.jsx (Mínimo código real)
 ```jsx
 function App() {
