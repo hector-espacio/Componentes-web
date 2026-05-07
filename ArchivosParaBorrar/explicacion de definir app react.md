@@ -20,6 +20,8 @@ Desde hace unos años, existe el **"Nuevo Transformador de JSX"**. Ahora, herram
 Imagina que tu aplicación es un juego de **LEGO**:
  * **export default App**: Es como ponerle un conector de salida a tu pieza. Sin esto, la pieza está "pegada" a su manual y nadie más puede usarla. Al exportarla, la dejas disponible en la caja global del proyecto.
  * **import App from './App.jsx' (en tu main.jsx)**: Es la mano que saca esa pieza específica de la caja y la pone sobre la base (el root).
+
+
 **Resumen:**
  1. **import**: "Trae esto de otro lado porque lo voy a usar aquí".
  2. **export**: "Saca esto de aquí para que otros archivos puedan usarlo".
