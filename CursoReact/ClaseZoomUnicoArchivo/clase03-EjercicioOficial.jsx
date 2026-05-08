@@ -1,4 +1,18 @@
-// Componente Principal: App.jsx
+// script ejecutor react: /src/main.jsx
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+------------
+// Componente Principal: /src/App.jsx
 
 import Layout from "./componentes/Layout/Layout";
 import TarjetaProducto from "./componentes/TarjetaProducto/TarjetaProducto";
@@ -32,4 +46,125 @@ function App() {
 }
 
 export default App;
--------------------
+--------------------
+
+// Componentes: /src/componentes/Layout/Layout.jsx
+
+import Header from "./Header/Header";
+import Footer from "./Footer/Footer";
+
+function Layout({ children }) {
+    return (
+        <div className="app">
+            <Header />
+            <main className="container">
+                {children}
+            </main>
+            <Footer />
+        </div>
+    );
+} 
+
+const styles = {
+    
+}
+
+export default Layout;
+------------------------
+// Componentes: /src/componentes/Layout/Header/Header.jsx
+
+export default function Header() {
+  return (
+    <header style={styles.header}>
+      <h1>Tienda React</h1>
+
+      <nav>
+        <ul style={styles.navList}>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Productos</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Carrito</a></li>
+        </ul>
+      </nav>
+    </header>
+  );
+}
+
+const styles = {
+  header: {
+    backgroundColor: "var(--color-primario)",
+    color: "var(--color-blanco)",
+    padding: "20px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  navList: {
+    listStyle: "none",
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "15px"
+  }
+};
+----------
+// Componentes: /src/componentes/Layout/Footer/Footer.jsx
+
+export default function Footer() {
+  return (
+    <footer style={styles.footer}>
+      <p>© 2026 Tienda React</p>
+    </footer>
+  );
+}
+
+const styles = {
+  footer: {
+    backgroundColor: "var(--color-secundario)",
+    color: "var(--color-blanco)",
+    textAlign: "center",
+    padding: "15px"
+  }
+};
+
+--------
+// Componentes: /src/componentes/TarjetaProducto/TarjetaProducto.jsx
+
+import styles from "./TarjetaProducto.module.css";
+
+export default function TarjetaProducto({ imagen, nombre, precio }) {
+  return (
+    <div className={styles.card}>
+      <img src={imagen} alt={nombre} className={styles.image} />
+      <h3>{nombre}</h3>
+      <p className={styles.price}>${precio}</p>
+    </div>
+  );
+}
+--------
+// Componentes: /src/componentes/TarjetaProducto/TarjetaProducto.module.css
+
+.card {
+  background: var(--color-blanco);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.price {
+  color: var(--color-acento);
+  font-weight: bold;
+  margin-top: 10px;
+}
