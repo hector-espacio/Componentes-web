@@ -1,4 +1,4 @@
-App.jsx
+// Componente App.jsx
 
 import {TarjetaUsuario } from "./TarjetaUsuario";
 import {Bienvenida } from "./Bienvenida";
@@ -15,7 +15,7 @@ return (
 export default App;
 
 --------------------------------------------------
-Bienvenida.jsx
+// Componente Bienvenida.jsx
 export const Bienvenida = () => {
   return (
 <h1 style={{ lineHeight: '2.5rem' }}>¡Bienvenidos al curso de React!</h1>
