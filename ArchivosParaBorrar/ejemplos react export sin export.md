@@ -24,12 +24,12 @@ Si quieres mantener el export const al principio (como en la imagen 1), entonces
  * **Archivo Bienvenida.jsx:**
    ```javascript
    export const Bienvenida = () => { ... }
-   
+
    ```
  * **Archivo App.jsx (El import correcto):**
    ```javascript
    import { Bienvenida } from './Bienvenida'; // ¡Con llaves!
-   
+
    ```
 ### ¿Por qué la imagen está mal?
 Lo más probable es que quien hizo la diapositiva cometió un error de "copiar y pegar". Es muy frecuente ver este error en tutoriales donde mezclan los dos estilos:
