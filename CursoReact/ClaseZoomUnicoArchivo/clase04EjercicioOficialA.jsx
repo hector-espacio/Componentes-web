@@ -30,6 +30,8 @@ export function TarjetaProducto({ imagen, nombre, precio }) {
 // --------------------------
 
 // src/App.jsx
+
+import {TarjetaProducto} from './TarjetaProducto'
 function App() {
   const datos = [ ... ];
 
