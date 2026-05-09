@@ -3,13 +3,13 @@ import { useState } from 'react'; // No olvides importar useState aquí
 
 export function TarjetaProducto({ imagen, nombre, precio }) { 
   // Cada tarjeta crea su propio estado independiente al nacer
-  const [favorito, setFavorito] = useState("si");
+  const [favorito, setFavorito] = useState("❤️");
 
   const cambiarFavorito = () => {
-    if (favorito === "si") {
+    if (favorito === "❤️") {
       setFavorito("no");
     } else {
-      setFavorito("si");
+      setFavorito("🤍");
     }
   };
 
