@@ -1,20 +1,20 @@
 // src/TarjetaProducto.jsx
-import { useState } from 'react'; // No olvides importar useState aquí
+import { useState } from 'react'; 
 
 export function TarjetaProducto({ imagen, nombre, precio }) { 
-  // Cada tarjeta crea su propio estado independiente al nacer
-  const [favorito, setFavorito] = useState("❤️");
+ 
+   const [favorito, setFavorito] = useState("❤️");
 
   const cambiarFavorito = () => {
     if (favorito === "❤️") {
-      setFavorito("no");
-    } else {
       setFavorito("🤍");
+    } else {
+      setFavorito("❤️");
     }
   };
 
   return (
-    <div style={{ border: "black solid 2px", padding: "30px", borderRadius: "10px" }}>
+    <div style={{ border: "black solid 2px", padding: "20px", borderRadius: "10px" }}>
       <img src={imagen} alt={nombre} />
       <h3>{nombre}</h3>
       <p>${precio}</p>
@@ -27,6 +27,7 @@ export function TarjetaProducto({ imagen, nombre, precio }) {
     </div>
   );
 }
+
 // --------------------------
 
 // src/App.jsx
