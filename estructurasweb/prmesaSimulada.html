@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Promesas</title>
+    <style>
+        section {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background-color: #f4f4f9;
+            width: 400px;
+            border: solid black 1px;
+            border-radius:8px
+        }
+        #pantalla,#pantalla2 {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            font-size: 1.2rem;
+            display: inline-block;
+        }
+        .cargando { color: #cca300; }
+        .exito { color: #2e7d32; }
+        .error { color: #c62828; }
+    </style>
+</head>
+<body>
+<section>
+<h1><u>SISTEMA INFO NUBE</u></h1>
+    <h2>Cargando dato del usuario:</h2>
+    id:10, carlos<br>
+     <div id="pantalla" class="cargando">
+Esperando datos (4 segundos)...</div>
+
+    <h2>Cargando dato del usuario:</h2>
+    id:11, santiago<br>
+    <div id="pantalla2" class="cargando">
+
+Esperando datos (4 segundos)...</div>
+</section>
+    <script>
+
+        const xSimulada = {
+            estado: "pending",
+            dato: undefined,
+            error: undefined
+        };
+   const ySimulada = {
+            estado: "pending",
+            dato: undefined,
+            error: undefined
+        };
+
+
+        function resolverSimulado(objetoPromesa, valorRecibido) {
+            if (objetoPromesa.estado === "pending") {
+                objetoPromesa.estado = "fulfilled";
+                objetoPromesa.dato = valorRecibido;
+            }
+        }
+
+        function rechazarSimulado(objetoPromesa, motivoError) {
+            if (objetoPromesa.estado === "pending") {
+                objetoPromesa.estado = "rejected";
+                objetoPromesa.error = motivoError;
+            }
+        }
+
+
+        setTimeout(() => {
+            // Guardamos la referencia al div del HTML
+            const pantallaDiv = document.getElementById("pantalla");
+
+            // Resolvemos la promesa simulada con los datos de Carlos
+            resolverSimulado(xSimulada, { id: 10, nombre: "Carlos" });
+
+            // 4. Evaluamos el estado y usamos los datos directamente en el HTML
+            if (xSimulada.estado === "fulfilled") {
+                // Cambiamos el estilo visual a éxito
+                pantallaDiv.className = "exito";
+                
+                // Usamos los datos específicos del objeto que recibimos (nombre e id)
+                pantallaDiv.innerHTML = `
+                    <strong>¡Éxito!</strong><br>
+                    Usuario cargado: ${xSimulada.dato.nombre}<br>
+                    ID del sistema: ${xSimulada.dato.id}
+                `;
+            } else if (xSimulada.estado === "rejected") {
+                // Cambiamos el estilo visual a error
+                pantallaDiv.className = "error";
+                pantallaDiv.innerHTML = `<strong>Error:</strong><br> ${xSimulada.error}`;
+            }
+            
+        }, 4000);
+        
+            setTimeout(() => {
+            // Guardamos la referencia al div del HTML
+            const pantallaDiv2 = document.getElementById("pantalla2");
+
+            // Resolvemos la promesa simulada con los datos de Carlos
+            rechazarSimulado(ySimulada, "dato ya existente");
+
+            // 4. Evaluamos el estado y usamos los datos directamente en el HTML
+            if (ySimulada.estado === "fulfilled") {
+                // Cambiamos el estilo visual a éxito
+                pantallaDiv2.className = "exito";
+                
+                // Usamos los datos específicos del objeto que recibimos (nombre e id)
+                pantallaDiv2.innerHTML = `
+                    <strong>¡Éxito!</strong><br>
+                    Usuario cargado: ${xSimulada.dato.nombre}<br>
+                    ID del sistema: ${xSimulada.dato.id}
+                `;
+            } else if (ySimulada.estado === "rejected") {
+                // Cambiamos el estilo visual a error
+                pantallaDiv2.className = "error";
+                pantallaDiv2.innerHTML = `<strong>Error:</strong><br> ${ySimulada.error}`;
+            }
+            
+        }, 4000);
+    </script>
+
+</body>
+</html>
