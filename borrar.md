@@ -1,7 +1,6 @@
-Entendido. Limpiamos por completo la sección de orígenes y dejamos únicamente los tres bloques informativos, claros y sin vueltas.
-Basándome en los estándares habituales de una rotisería o fábrica de empanadas, acá tenés la ficha técnica exacta para cada uno de los 10 gustos:
+
 ## 1. Calabaza y Queso
-*(Inspirado en la imagen 1783058725385.jpeg)*
+
 ### **Composición y proporciones del relleno (110g aprox.)**
  * **60% Puré de calabaza:** Horneado previo para reducir el líquido, sazonado con sal, pimienta blanca y nuez moscada.
  * **35% Queso Mozzarella:** Cortado en cubos para lograr un fundido uniforme.
