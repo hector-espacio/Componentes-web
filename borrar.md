@@ -70,7 +70,7 @@
  * **Contiene leche:** Por los quesos utilizados.
  * **Contiene trigo (gluten):** Por la masa.
 ## 7. Jamón y Queso
-*(Se asoma en la parte inferior de la imagen 1783058725385.jpeg)*
+
 ### **Composición y proporciones del relleno (110g aprox.)**
  * **60% Queso Mozzarella:** Fundido central.
  * **35% Jamón cocido:** Cortado en cubos pequeños o tiritas uniformes.
